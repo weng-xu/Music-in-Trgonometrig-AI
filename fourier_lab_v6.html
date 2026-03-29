@@ -1,18 +1,369 @@
-async function reqMicPerm() {
-    const confirmation = confirm("Do you want to grant microphone permissions?");
-    if (!confirmation) {
-        console.log('Microphone access denied by the user.');
-        return;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fourier Lab - Microphone Audio Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 12px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        #startBtn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        #startBtn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+        #startBtn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        #stopBtn {
+            background: #ff6b6b;
+            color: white;
+        }
+        #stopBtn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.4);
+        }
+        #stopBtn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .canvas-container {
+            background: #1a1a1a;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 30px;
+        }
+        canvas {
+            display: block;
+            width: 100%;
+            border-radius: 8px;
+        }
+        .info-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .info-card {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .info-label {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        .info-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        .status {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .status.idle {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        .status.recording {
+            background: #e8f5e9;
+            color: #388e3c;
+            animation: pulse 1.5s infinite;
+        }
+        .status.error {
+            background: #ffebee;
+            color: #d32f2f;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 Fourier Lab - Microphone Analysis</h1>
+        <p class="subtitle">Real-time Fourier Transform of Audio Input</p>
+        
+        <div id="status" class="status idle">Ready to start</div>
+        
+        <div class="controls">
+            <button id="startBtn">🎤 Start Recording</button>
+            <button id="stopBtn" disabled>⏹️ Stop Recording</button>
+        </div>
 
-    try {
-        // Attempt to get microphone permissions
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        console.log('Microphone access granted.');
-        // Do something with the stream
-        // ...
-    } catch (error) {
-        console.error('Error accessing microphone:', error);
-        alert("An error occurred while trying to access the microphone. Please try again.");
-    }
-}
+        <div class="canvas-container">
+            <canvas id="canvas" width="800" height="400"></canvas>
+        </div>
+
+        <div class="info-panel">
+            <div class="info-card">
+                <div class="info-label">Dominant Frequency</div>
+                <div class="info-value" id="frequency">-- Hz</div>
+            </div>
+            <div class="info-card">
+                <div class="info-label">Sound Level</div>
+                <div class="info-value" id="volume">-- %</div>
+            </div>
+            <div class="info-card">
+                <div class="info-label">Status</div>
+                <div class="info-value" id="statusText">Waiting</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let audioContext;
+        let analyser;
+        let microphone;
+        let animationId;
+        const canvas = document.getElementById('canvas');
+        const canvasCtx = canvas.getContext('2d');
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const statusDiv = document.getElementById('status');
+        const frequencyDisplay = document.getElementById('frequency');
+        const volumeDisplay = document.getElementById('volume');
+        const statusText = document.getElementById('statusText');
+
+        startBtn.addEventListener('click', reqMicPerm);
+        stopBtn.addEventListener('click', stopRecording);
+
+        async function reqMicPerm() {
+            const confirmation = confirm("Do you want to grant microphone permissions?");
+            if (!confirmation) {
+                console.log('Microphone access denied by the user.');
+                updateStatus('Microphone access denied', 'error');
+                statusText.textContent = 'Denied';
+                return;
+            }
+
+            try {
+                updateStatus('Requesting microphone access...', 'idle');
+                statusText.textContent = 'Connecting...';
+                
+                // Initialize Web Audio API
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Get microphone stream with audio constraints
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    audio: {
+                        echoCancellation: true,
+                        noiseSuppression: true,
+                        autoGainControl: false
+                    } 
+                });
+                
+                console.log('Microphone access granted.');
+                
+                // Create audio nodes
+                microphone = audioContext.createMediaStreamSource(stream);
+                analyser = audioContext.createAnalyser();
+                analyser.fftSize = 2048;
+                analyser.smoothingTimeConstant = 0.8;
+                
+                microphone.connect(analyser);
+                
+                // Update UI
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+                updateStatus('Recording - Analyzing audio stream...', 'recording');
+                statusText.textContent = 'Recording';
+                
+                // Start visualization
+                drawFrequencySpectrum();
+                
+            } catch (error) {
+                console.error('Error accessing microphone:', error);
+                updateStatus('Error: Cannot access microphone', 'error');
+                statusText.textContent = 'Error';
+                alert("An error occurred while trying to access the microphone. Please try again and ensure microphone permissions are granted.");
+            }
+        }
+
+        function drawFrequencySpectrum() {
+            animationId = requestAnimationFrame(drawFrequencySpectrum);
+            
+            const dataArray = new Uint8Array(analyser.frequencyBinCount);
+            analyser.getByteFrequencyData(dataArray);
+            
+            // Clear canvas
+            canvasCtx.fillStyle = '#1a1a1a';
+            canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw frequency bars
+            const barWidth = (canvas.width / dataArray.length) * 2.5;
+            let x = 0;
+            
+            for (let i = 0; i < dataArray.length; i++) {
+                const barHeight = (dataArray[i] / 255) * canvas.height;
+                
+                // Color gradient based on frequency
+                const hue = (i / dataArray.length) * 360;
+                const saturation = 100;
+                const lightness = 50 + (dataArray[i] / 255) * 10;
+                
+                canvasCtx.fillStyle = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+                canvasCtx.fillRect(x, canvas.height - barHeight, barWidth - 1, barHeight);
+                
+                x += barWidth;
+            }
+            
+            // Draw frequency line
+            canvasCtx.strokeStyle = '#00ff00';
+            canvasCtx.lineWidth = 2;
+            canvasCtx.beginPath();
+            
+            const sliceWidth = canvas.width / dataArray.length;
+            let x2 = 0;
+            
+            for (let i = 0; i < dataArray.length; i++) {
+                const v = dataArray[i] / 128.0;
+                const y = (v * canvas.height) / 2;
+                
+                if (i === 0) {
+                    canvasCtx.moveTo(x2, y);
+                } else {
+                    canvasCtx.lineTo(x2, y);
+                }
+                
+                x2 += sliceWidth;
+            }
+            
+            canvasCtx.lineTo(canvas.width, canvas.height / 2);
+            canvasCtx.stroke();
+            
+            // Update displays
+            updateDisplays(dataArray);
+        }
+
+        function updateDisplays(dataArray) {
+            // Calculate volume from time domain
+            const timeDomain = new Uint8Array(analyser.fftSize);
+            analyser.getByteTimeDomainData(timeDomain);
+            
+            let sum = 0;
+            for (let i = 0; i < timeDomain.length; i++) {
+                sum += Math.abs(timeDomain[i] - 128);
+            }
+            const volume = Math.round((sum / timeDomain.length) * 100);
+            volumeDisplay.textContent = volume + ' %';
+            
+            // Find dominant frequency
+            let maxValue = 0;
+            let maxIndex = 0;
+            for (let i = 0; i < dataArray.length; i++) {
+                if (dataArray[i] > maxValue) {
+                    maxValue = dataArray[i];
+                    maxIndex = i;
+                }
+            }
+            
+            const nyquist = audioContext.sampleRate / 2;
+            const frequency = Math.round((maxIndex * nyquist) / dataArray.length);
+            frequencyDisplay.textContent = frequency + ' Hz';
+        }
+
+        function stopRecording() {
+            console.log('Stopping recording...');
+            
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+            
+            if (microphone) {
+                microphone.disconnect();
+            }
+            
+            if (audioContext) {
+                audioContext.close();
+            }
+            
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+            updateStatus('Recording stopped', 'idle');
+            statusText.textContent = 'Stopped';
+            
+            // Clear canvas
+            canvasCtx.fillStyle = '#1a1a1a';
+            canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            frequencyDisplay.textContent = '-- Hz';
+            volumeDisplay.textContent = '-- %';
+        }
+
+        function updateStatus(message, className) {
+            statusDiv.textContent = message;
+            statusDiv.className = 'status ' + className;
+        }
+
+        // Resize canvas on window resize
+        window.addEventListener('resize', function() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        });
+    </script>
+</body>
+</html>
