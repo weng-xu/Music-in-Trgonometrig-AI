@@ -7,9 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
+  /* 1. 設定基準字體大小，這會讓整個網頁的字變大 */
+  font-size: 18px; 
+
   --bg:#FAFAFA; --bg2:#F2F2F2; --surface:#FFFFFF;
   --border:rgba(0,0,0,0.07); --border2:rgba(0,0,0,0.04);
-  --text:#1a1a1a; --text2:#6b6b6b; --text3:#ababab;
+  
+  /* 2. 把文字顏色調深一點，看得更清楚 */
+  --text:#000000; --text2:#444444; --text3:#888888;
+  
   --shadow:0 1px 3px rgba(0,0,0,0.04),0 8px 32px rgba(0,0,0,0.05);
   --shadow-sm:0 1px 2px rgba(0,0,0,0.04);
   --sun-a:#FF9A9E; --sun-b:#FECFEF; --sun-c:#FFB347;
@@ -17,6 +23,19 @@
   --for-a:#a8e6cf; --for-b:#88d8b0;
   --gld-a:#f6d365; --gld-b:#fda085;
   --c1:#c27b4a; --c2:#5b8fa8; --c3:#8b6aaf; --c4:#b05070; --c5:#3a9a7a;
+}
+
+/* 3. 確保排版不跑位的額外設定 */
+body {
+  font-family: 'DM Mono', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 讓 Chapter II 的標題更有存在感 */
+.p2-col h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  font-weight: 600;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{font-size:14px;scroll-behavior:smooth;}
