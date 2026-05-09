@@ -7,9 +7,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
+  font-size: 15px; 
+  /* 當螢幕寬度大於 1024px（電腦版）時，自動放大基準字體 */
+  @media (min-width: 1024px) {
+    font-size: 19px; 
+  }
+  /* --- 原有的顏色變數，稍微加深文字顏色以便閱讀 --- */
   --bg:#FAFAFA; --bg2:#F2F2F2; --surface:#FFFFFF;
   --border:rgba(0,0,0,0.07); --border2:rgba(0,0,0,0.04);
-  --text:#1a1a1a; --text2:#6b6b6b; --text3:#ababab;
+  --text:#000000;  /* 將原本的 #1a1a1a 改成純黑，電腦看更清楚 */
+  --text2:#4d4d4d; /* 將原本的 #6b6b6b 加深 */
+  --text3:#888888;
   --shadow:0 1px 3px rgba(0,0,0,0.04),0 8px 32px rgba(0,0,0,0.05);
   --shadow-sm:0 1px 2px rgba(0,0,0,0.04);
   --sun-a:#FF9A9E; --sun-b:#FECFEF; --sun-c:#FFB347;
