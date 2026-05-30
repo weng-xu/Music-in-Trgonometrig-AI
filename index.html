@@ -1,16 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ℱ 傅立葉音樂實驗室 · Fourier Music Laboratory</title>
+<title>ℱ Fourier Music Laboratory</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg:#FAFAFA; --bg2:#F2F2F2; --surface:#FFFFFF;
   --border:rgba(0,0,0,0.07); --border2:rgba(0,0,0,0.04);
-  --text:#000000; --text2:#4d4d4d; --text3:#888888;
+  --text:#1a1a1a; --text2:#6b6b6b; --text3:#ababab;
   --shadow:0 1px 3px rgba(0,0,0,0.04),0 8px 32px rgba(0,0,0,0.05);
   --shadow-sm:0 1px 2px rgba(0,0,0,0.04);
   --sun-a:#FF9A9E; --sun-b:#FECFEF; --sun-c:#FFB347;
@@ -20,12 +19,7 @@
   --c1:#c27b4a; --c2:#5b8fa8; --c3:#8b6aaf; --c4:#b05070; --c5:#3a9a7a;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{
-  font-size: 15px;
-}
-@media (min-width: 1024px) {
-  html { font-size: 25px; }
-}
+html{font-size:14px;scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background:radial-gradient(ellipse 80vw 60vh at 15% 10%,rgba(255,154,158,.06) 0%,transparent 60%),
@@ -76,8 +70,6 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 .hc-arrow{position:absolute;right:1rem;bottom:.9rem;font-size:.75rem;color:var(--text3);opacity:0;transition:all .25s;}
 .hc:hover .hc-arrow{opacity:1;right:.75rem;}
 .home-formula{margin-top:2rem;font-size:.58rem;letter-spacing:.16em;color:var(--text3);animation:riseIn .9s ease .85s both;}
-/* ── BILINGUAL ── */
-.en{display:block;font-size:.78em;opacity:.55;letter-spacing:.04em;margin-top:.15em;font-style:normal;}
 
 /* ── SUBPAGE SHELL ── */
 .subpage{padding-top:52px;min-height:100vh;position:relative;z-index:1;}
@@ -142,22 +134,6 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 .freq-note{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:var(--text2);}
 .formula{margin-top:.8rem;padding:.8rem 1rem;background:var(--bg2);border-radius:12px;border:1px solid var(--border);font-size:.6rem;line-height:2;color:var(--text2);}
 
-/* ── PAGE 1: SLIDER CONTROLS ── */
-.synth-panel{padding:1.25rem;display:flex;flex-direction:column;gap:1rem;}
-.slider-row{display:flex;align-items:center;gap:.8rem;}
-.slider-row label{font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);min-width:80px;flex-shrink:0;}
-.slider-row input[type=range]{flex:1;-webkit-appearance:none;height:4px;border-radius:2px;outline:none;cursor:pointer;background:var(--border);}
-.slider-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;cursor:pointer;border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,.15);}
-.slider-row-accent input[type=range]::-webkit-slider-thumb{background:#FF9A9E;}
-.slider-row-accent input[type=range]{background:linear-gradient(90deg,#FF9A9E var(--pct,50%),var(--border) var(--pct,50%));}
-.slider-row-sky input[type=range]::-webkit-slider-thumb{background:#8EC5FC;}
-.slider-row-sky input[type=range]{background:linear-gradient(90deg,#8EC5FC var(--pct,50%),var(--border) var(--pct,50%));}
-.slider-val{min-width:70px;font-size:.65rem;font-weight:500;color:var(--text);text-align:right;}
-.wave-type-row{display:flex;gap:6px;flex-wrap:wrap;}
-.wt-btn{padding:.28rem .7rem;font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.06em;cursor:pointer;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text3);transition:all .15s;}
-.wt-btn:hover{border-color:rgba(0,0,0,.15);color:var(--text);}
-.wt-btn.active{background:linear-gradient(135deg,#FF9A9E,#FFB347);border-color:transparent;color:#6b2535;}
-
 /* ── PIANO ── */
 .piano-wrap{overflow-x:auto;padding:1.25rem;background:#f5f3f0;border-bottom:1px solid var(--border);}
 .piano-wrap::-webkit-scrollbar{height:3px;}
@@ -169,6 +145,11 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 .bk{width:26px;height:88px;background:linear-gradient(180deg,#2a2a2a,#1a1a1a 65%,#333);border-radius:0 0 4px 4px;position:absolute;cursor:pointer;z-index:2;top:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:.22rem;font-size:.38rem;color:#555;font-family:'DM Mono',monospace;transition:background .06s,transform .06s;box-shadow:0 6px 16px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.08);}
 .bk:hover{background:linear-gradient(180deg,#444,#2a2a2a 65%,#555);}
 .bk.pressed{background:linear-gradient(180deg,#FF9A9E,#c06070 65%,#e87080);transform:translateY(2px);}
+
+/* ── CANVAS ── */
+.cw{position:relative;background:#f9f9f9;}
+canvas.viz{display:block;width:100%;}
+.cl{position:absolute;top:.5rem;left:.75rem;font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);pointer-events:none;}
 
 /* ── HARMONICS TABLE ── */
 .ht{width:100%;border-collapse:collapse;font-size:.58rem;}
@@ -191,25 +172,6 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
 .ib[data-i=clarinet].active{background:linear-gradient(135deg,#f4eeff,#ecdeff);}
 .ib[data-i=oboe].active{background:linear-gradient(135deg,#fff8e0,#fff0c0);}
 
-/* ── P2 COMPARISON ── */
-.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-.compare-col{display:flex;flex-direction:column;gap:.8rem;}
-.col-divider{width:1px;background:var(--border);flex-shrink:0;margin:0;}
-.p2-col-header{padding:.6rem 1rem;background:var(--bg2);border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:.5rem;}
-.p2-col-label{font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);}
-.compare-inst-row{display:flex;gap:5px;padding:.75rem 1rem;border-bottom:1px solid var(--border2);flex-wrap:wrap;}
-.cib{flex:1;min-width:60px;padding:.5rem .3rem;display:flex;flex-direction:column;align-items:center;gap:.2rem;font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.04em;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text3);border-radius:10px;transition:all .18s;}
-.cib-icon{font-size:1.1rem;}
-.cib:hover:not(.active){border-color:rgba(0,0,0,.12);color:var(--text);}
-.cib.active{color:var(--text);border-color:transparent;}
-.left-col .cib.active{background:linear-gradient(135deg,#fff4e8,#ffe0cc);}
-.right-col .cib.active{background:linear-gradient(135deg,#e8f0ff,#d8e8ff);}
-
-/* ── CANVAS ── */
-.cw{position:relative;background:#f9f9f9;}
-canvas.viz{display:block;width:100%;}
-.cl{position:absolute;top:.5rem;left:.75rem;font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);pointer-events:none;}
-
 /* ── DRAW CANVAS ── */
 .draw-box{position:relative;background:#f8f8f8;border-bottom:1px solid var(--border);}
 .draw-box canvas{display:block;width:100%;cursor:crosshair;}
@@ -229,7 +191,22 @@ canvas.viz{display:block;width:100%;}
 .lv-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,#a8e6cf,#FECFEF,#FF9A9E);width:0%;transition:width .06s;}
 
 /* ── PAGE 5 — BATTLE ── */
+.battle-arena{display:grid;grid-template-columns:1fr auto 1fr;gap:0;min-height:420px;}
+.fighter{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;}
 .fighter-head{padding:.8rem 1rem;border-bottom:1px solid var(--border2);background:var(--bg2);display:flex;align-items:center;gap:.6rem;}
+.fighter-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;}
+.fighter-body{flex:1;padding:1rem;}
+.hp-bar-wrap{height:10px;background:var(--bg2);border-radius:5px;overflow:hidden;margin:0 1rem .75rem;border:1px solid var(--border);}
+.hp-bar{height:100%;border-radius:5px;transition:width .6s ease;}
+.hp-label{display:flex;justify-content:space-between;padding:0 1rem .5rem;font-size:.56rem;color:var(--text3);}
+.vs-col{display:flex;align-items:center;justify-content:center;padding:0 1rem;}
+.vs-text{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-style:italic;color:var(--text3);font-weight:300;}
+.wave-canvas-wrap{background:#f8f8f8;border-bottom:1px solid var(--border2);}
+.battle-log{border-top:1px solid var(--border);background:var(--bg2);padding:.65rem 1rem;font-size:.58rem;color:var(--text2);min-height:44px;max-height:80px;overflow-y:auto;}
+.battle-controls{display:flex;flex-direction:column;gap:.5rem;padding:1rem;}
+.inst-mini{display:flex;gap:4px;flex-wrap:wrap;}
+.inst-mini button{padding:.25rem .55rem;font-family:'DM Mono',monospace;font-size:.52rem;cursor:pointer;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text3);transition:all .15s;}
+.inst-mini button.active{border-color:transparent;color:var(--text);}
 .freq-row{display:flex;align-items:center;gap:.6rem;}
 .freq-row label{font-size:.54rem;color:var(--text3);white-space:nowrap;}
 .freq-row span{font-size:.62rem;font-weight:500;min-width:50px;}
@@ -240,9 +217,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 .atk-btn{border-radius:999px;padding:.45rem 1rem;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.06em;cursor:pointer;border:none;color:white;font-weight:500;transition:all .2s;box-shadow:0 2px 10px rgba(0,0,0,.15);}
 .atk-btn:hover{opacity:.88;transform:translateY(-1px);}
 .atk-btn:active{transform:translateY(0);}
-.inst-mini{display:flex;gap:4px;flex-wrap:wrap;}
-.inst-mini button{padding:.25rem .55rem;font-family:'DM Mono',monospace;font-size:.52rem;cursor:pointer;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text3);transition:all .15s;}
-.inst-mini button.active{border-color:transparent;color:var(--text);}
+.battle-center-btn{text-align:center;padding:1rem 0 0;}
 
 /* ── ANIMATIONS ── */
 @keyframes riseIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
@@ -258,7 +233,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 @media(max-width:900px){
   .home-cards{grid-template-columns:1fr 1fr;}
   .g2{grid-template-columns:1fr;}
-  .compare-grid{grid-template-columns:1fr;}
+  .battle-arena{grid-template-columns:1fr;}.vs-col{display:none;}
   .page-body{padding:1.2rem 1rem 3rem;}
   .page-hero{padding:1.8rem 1rem 1.5rem;}
 }
@@ -272,11 +247,11 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
   <button class="nav-arrow" onclick="navScroll(-120)">‹</button>
   <div class="nav-scroll">
     <div class="nav-links">
-      <div class="nav-link" data-page="p1" onclick="goPage('p1')">〜 合成器<span class="en">Synth</span></div>
-      <div class="nav-link" data-page="p2" onclick="goPage('p2')">🎻 樂器比較<span class="en">Compare</span></div>
-      <div class="nav-link" data-page="p3" onclick="goPage('p3')">✏ 畫波形<span class="en">Draw Wave</span></div>
-      <div class="nav-link" data-page="p4" onclick="goPage('p4')">🎙️ 錄音<span class="en">Recording</span></div>
-      <div class="nav-link" data-page="p5" onclick="goPage('p5')">⚔️ 波形對決<span class="en">Wave Battle</span></div>
+      <div class="nav-link" data-page="p1" onclick="goPage('p1')">🎹 Piano</div>
+      <div class="nav-link" data-page="p2" onclick="goPage('p2')">🎻 Instruments</div>
+      <div class="nav-link" data-page="p3" onclick="goPage('p3')">〜 Draw Wave</div>
+      <div class="nav-link" data-page="p4" onclick="goPage('p4')">🎙️ Recording</div>
+      <div class="nav-link" data-page="p5" onclick="goPage('p5')">⚔️ Wave Battle</div>
     </div>
   </div>
   <button class="nav-arrow" onclick="navScroll(120)">›</button>
@@ -285,49 +260,49 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 <!-- HOME -->
 <div class="page active" id="page-home" style="opacity:1;display:flex;align-items:center;justify-content:center;min-height:100vh;">
   <div class="home-wrap">
-    <div class="home-eyebrow">傅立葉音樂實驗室 · Fourier Music Laboratory</div>
+    <div class="home-eyebrow">Fourier Music Laboratory</div>
     <div class="home-greek">ℱ</div>
-    <div class="home-title">傅立葉音樂實驗室<span class="en">Fourier Music Laboratory</span></div>
+    <div class="home-title">Fourier Music Laboratory</div>
     <div class="home-rule"></div>
     <div class="home-cards">
       <div class="hc" onclick="goPage('p1')">
         <div class="hc-num">I</div>
-        <div class="hc-icon">〜</div>
-        <div class="hc-title">頻率與振幅合成器<span class="en">Frequency &amp; Amplitude Synthesizer</span></div>
-        <div class="hc-desc">拖動頻率與振幅滑桿即時改變波形，觀察諧波頻譜與傅立葉展開式同步更新。<span class="en">Drag the sliders to shape your wave in real time. See the harmonic spectrum and Fourier expansion update live.</span></div>
-        <div class="hc-tag">滑桿 · 頻譜 · 諧波 · Sliders · Spectrum</div>
+        <div class="hc-icon">🎹</div>
+        <div class="hc-title">Piano Keyboard & Frequency Analysis</div>
+        <div class="hc-desc">Press a key to instantly display its fundamental frequency, Fourier expansion, and harmonic spectrum. Listen to the real sound of each note.</div>
+        <div class="hc-tag">Interactive · Spectrum · Harmonics</div>
         <div class="hc-arrow">→</div>
       </div>
       <div class="hc" onclick="goPage('p2')">
         <div class="hc-num">II</div>
         <div class="hc-icon">🎻</div>
-        <div class="hc-title">樂器音色左右對比<span class="en">Side-by-Side Instrument Comparison</span></div>
-        <div class="hc-desc">左右各選一種樂器同時彈奏，並排比較諧波頻譜、波形與泛音結構的差異。<span class="en">Pick two instruments simultaneously and compare their harmonic spectra, waveforms and overtones in parallel.</span></div>
-        <div class="hc-tag">雙視圖 · 5種樂器 · Dual View · Compare</div>
+        <div class="hc-title">Instrument Timbre & Harmonic Analysis</div>
+        <div class="hc-desc">Piano, violin, guitar, clarinet, oboe — five instruments with unique harmonic structures. Press keys and compare their spectral differences.</div>
+        <div class="hc-tag">5 Instruments · Timbre Synthesis</div>
         <div class="hc-arrow">→</div>
       </div>
       <div class="hc" onclick="goPage('p3')">
         <div class="hc-num">III</div>
-        <div class="hc-icon">✏</div>
-        <div class="hc-title">畫波形，聽聲音<span class="en">Draw Waveforms &amp; Hear the Sound</span></div>
-        <div class="hc-desc">在畫布上自由繪製任意波形，系統進行傅立葉分析後即時播放對應的聲音。<span class="en">Freely draw any waveform. The system runs a Fourier analysis and plays the corresponding sound.</span></div>
-        <div class="hc-tag">繪製 · 傅立葉合成 · Draw · Synthesis</div>
+        <div class="hc-icon">〜</div>
+        <div class="hc-title">Draw Waveforms & Hear the Sound</div>
+        <div class="hc-desc">Freely draw any waveform on the canvas. The system runs a Fourier analysis and plays the corresponding sound — draw what you hear.</div>
+        <div class="hc-tag">Draw · Fourier Synthesis</div>
         <div class="hc-arrow">→</div>
       </div>
       <div class="hc" onclick="goPage('p4')">
         <div class="hc-num">IV</div>
         <div class="hc-icon">🎙️</div>
-        <div class="hc-title">即時錄音與頻譜分解<span class="en">Live Recording &amp; Spectrum Decomposition</span></div>
-        <div class="hc-desc">用麥克風錄下你的聲音或樂器，系統將音訊分解成各頻率的正弦波成分。<span class="en">Record your voice or instrument. The system decomposes the audio into individual sine wave components.</span></div>
-        <div class="hc-tag">錄音 · FFT · 頻譜 · Recording · Spectrum</div>
+        <div class="hc-title">Live Recording & Spectrum Decomposition</div>
+        <div class="hc-desc">Record your voice or instrument with the microphone. The system decomposes the audio into individual sine wave components across all frequencies.</div>
+        <div class="hc-tag">Recording · FFT · Spectrum</div>
         <div class="hc-arrow">→</div>
       </div>
       <div class="hc" onclick="goPage('p5')">
         <div class="hc-num">V</div>
         <div class="hc-icon">⚔️</div>
-        <div class="hc-title">聲波 PK 對決<span class="en">Sound Wave PK Battle</span></div>
-        <div class="hc-desc">兩名玩家各選樂器調整頻率發射波形攻擊，頻率越高傷害越大。頻率與振幅相同時波形相消！<span class="en">Two players fire wave attacks — higher frequency = more damage. Equal frequency &amp; amplitude cancel out!</span></div>
-        <div class="hc-tag">對戰 · 頻率 · HP · Battle · Frequency</div>
+        <div class="hc-title">Sound Wave PK Battle</div>
+        <div class="hc-desc">Two players each choose an instrument and adjust frequency to fire wave attacks. Higher frequency = more damage. Waves of equal frequency and amplitude cancel out!</div>
+        <div class="hc-tag">Battle · Frequency · HP</div>
         <div class="hc-arrow">→</div>
       </div>
     </div>
@@ -335,143 +310,74 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
   </div>
 </div>
 
-<!-- PAGE 1 — SYNTH SLIDERS -->
+<!-- PAGE 1 — PIANO -->
 <div class="page" id="page-p1"><div class="subpage">
   <div class="page-hero">
-    <div class="hero-top"><span class="chapter-badge">第一章 · Chapter I</span><div class="hero-divider"></div><button class="back-btn" onclick="goPage('home')">← 返回 · Back</button></div>
-    <div class="page-title">頻率與振幅 <em>·</em> 合成器<span class="en">Frequency &amp; Amplitude · Synthesizer</span></div>
-    <div class="page-desc">拖動滑桿調整頻率與振幅，觀察諧波頻譜與波形即時更新 · Drag the sliders to adjust frequency and amplitude — watch the spectrum and waveform update in real time</div>
+    <div class="hero-top"><span class="chapter-badge">Chapter I</span><div class="hero-divider"></div><button class="back-btn" onclick="goPage('home')">← Back</button></div>
+    <div class="page-title">Piano Keyboard <em>·</em> Frequency Analysis</div>
+    <div class="page-desc">Press any key — instantly see the frequency, Fourier expansion, and harmonic sine wave spectrum</div>
   </div>
   <div class="page-body">
-
-    <!-- Controls card -->
     <div class="card mb">
-      <div class="card-hd"><div class="cdot" style="background:linear-gradient(135deg,#FF9A9E,#FFB347)"></div><div class="cht">合成器控制 · Synthesizer Controls</div></div>
-      <div class="synth-panel">
-        <!-- Wave type -->
-        <div class="slider-row">
-          <label>波形類型<span class="en">Wave Type</span></label>
-          <div class="wave-type-row">
-            <button class="wt-btn active" data-wt="sine" onclick="s1SetWT(this)">〜 正弦<span class="en">Sine</span></button>
-            <button class="wt-btn" data-wt="square" onclick="s1SetWT(this)">⊓ 方波<span class="en">Square</span></button>
-            <button class="wt-btn" data-wt="sawtooth" onclick="s1SetWT(this)">◤ 鋸齒<span class="en">Sawtooth</span></button>
-            <button class="wt-btn" data-wt="triangle" onclick="s1SetWT(this)">△ 三角<span class="en">Triangle</span></button>
-            <button class="wt-btn" data-wt="custom" onclick="s1SetWT(this)">★ 自訂諧波<span class="en">Harmonic</span></button>
-          </div>
-        </div>
-        <!-- Frequency slider -->
-        <div class="slider-row slider-row-accent" id="s1-fr-row">
-          <label>頻率<span class="en">Frequency</span></label>
-          <input type="range" min="55" max="2000" value="440" step="1" id="s1-freq-sl" oninput="s1Update()">
-          <span class="slider-val" id="s1-freq-val">440 Hz</span>
-        </div>
-        <!-- Amplitude slider -->
-        <div class="slider-row slider-row-sky" id="s1-am-row">
-          <label>振幅<span class="en">Amplitude</span></label>
-          <input type="range" min="0.01" max="1" value="0.5" step="0.01" id="s1-amp-sl" oninput="s1Update()">
-          <span class="slider-val" id="s1-amp-val">0.50</span>
-        </div>
-        <!-- Harmonics (only for custom) -->
-        <div id="s1-harm-row" style="display:none">
-          <div style="font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem">各諧波振幅 (n=1…8) · Harmonic Amplitudes</div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;" id="s1-harm-sliders"></div>
-        </div>
-      </div>
+      <div class="card-hd"><div class="cdot" style="background:linear-gradient(135deg,#FF9A9E,#FFB347)"></div><div class="cht">Keyboard · C3–B5</div></div>
+      <div class="piano-wrap"><div class="piano" id="piano1"></div></div>
       <div class="cstrip">
-        <button class="btn btn-accent" id="s1-play-btn" onclick="s1PlayToggle()">▶ 播放 · Play</button>
-        <button class="btn btn-stop" onclick="s1Stop()">■ 停止 · Stop</button>
-        <div class="spill">音名 · Note <b id="s1-nn">—</b></div>
-        <div class="spill">頻率 · Freq <b id="s1-fval">440 Hz</b></div>
-        <div class="spill">振幅 · Amp <b id="s1-aval">0.50</b></div>
+        <button class="btn btn-accent" onclick="s1PlayNote()">▶ Play</button>
+        <button class="btn btn-stop" onclick="s1Stop()">■ Stop</button>
+        <div class="spill">Note <b id="s1-nn">—</b></div>
       </div>
     </div>
-
-    <!-- Freq info + overtone list -->
     <div class="ga mb">
       <div class="card">
-        <div class="card-hd"><div class="cdot" style="background:linear-gradient(135deg,#FF9A9E,#FFB347)"></div><div class="cht">基本頻率 · Fundamental Frequency</div></div>
+        <div class="card-hd"><div class="cdot" style="background:linear-gradient(135deg,#FF9A9E,#FFB347)"></div><div class="cht">Fundamental Frequency</div></div>
         <div class="card-bd">
-          <div class="freq-big" id="s1-freq-disp">440<sub> Hz</sub></div>
-          <div class="freq-note" id="s1-fn">A4 — 440.00 Hz</div>
-          <div class="formula" id="s1-fml">f(t) = 0.500·sin(2π·440·t)</div>
+          <div class="freq-big" id="s1-freq">—<sub> Hz</sub></div>
+          <div class="freq-note" id="s1-fn" style="margin-top:.28rem">Press any key</div>
+          <div class="formula" id="s1-fml">f(t) = Σ superposition of sine harmonics</div>
         </div>
       </div>
       <div class="card">
-        <div class="card-hd"><div class="cdot" style="background:linear-gradient(135deg,#8EC5FC,#E0C3FC)"></div><div class="cht">泛音列表 · Overtone List</div></div>
+        <div class="card-hd"><div class="cdot" style="background:linear-gradient(135deg,#8EC5FC,#E0C3FC)"></div><div class="cht">Overtone List</div></div>
         <table class="ht" id="s1-ht">
-          <thead><tr><th>n</th><th>頻率 · Freq</th><th>振幅 · Amp</th><th>類型 · Type</th></tr></thead>
-          <tbody><tr><td colspan="4" style="padding:1rem;color:var(--text3);text-align:center;font-size:.58rem">調整滑桿以顯示 · Adjust sliders to display</td></tr></tbody>
+          <thead><tr><th>n</th><th>Frequency</th><th>Amplitude</th><th>Type</th></tr></thead>
+          <tbody><tr><td colspan="4" style="padding:1rem;color:var(--text3);text-align:center;font-size:.58rem">Press a key to display</td></tr></tbody>
         </table>
       </div>
     </div>
-
-    <!-- Spectrum + waveform -->
     <div class="g2">
-      <div class="card"><div class="card-hd"><div class="cdot" style="background:#FF9A9E"></div><div class="cht">頻譜 — 諧波振幅 · Spectrum — Harmonic Amplitudes</div></div><div class="cw"><canvas id="s1-sc" class="viz" height="180"></canvas><div class="cl">振幅 A(n) · Amplitude</div></div></div>
-      <div class="card"><div class="card-hd"><div class="cdot" style="background:#FECFEF"></div><div class="cht">波形 — 時域 · Waveform — Time Domain</div></div><div class="cw"><canvas id="s1-wc" class="viz" height="180"></canvas><div class="cl">f(t)</div></div></div>
+      <div class="card"><div class="card-hd"><div class="cdot" style="background:#FF9A9E"></div><div class="cht">Spectrum — Harmonic Amplitudes</div></div><div class="cw"><canvas id="s1-sc" class="viz" height="180"></canvas><div class="cl">Amplitude A(n)</div></div></div>
+      <div class="card"><div class="card-hd"><div class="cdot" style="background:#FECFEF"></div><div class="cht">Overtone Sine Wave Superposition</div></div><div class="cw"><canvas id="s1-wc" class="viz" height="180"></canvas><div class="cl">sin(nωt)</div></div></div>
     </div>
   </div>
 </div></div>
 
-<!-- PAGE 2 — INSTRUMENTS COMPARISON (LEFT / RIGHT) -->
+<!-- PAGE 2 — INSTRUMENTS -->
 <div class="page" id="page-p2"><div class="subpage">
   <div class="page-hero">
-    <div class="hero-top"><span class="chapter-badge">第二章 · Chapter II</span><div class="hero-divider"></div><button class="back-btn" onclick="goPage('home')">← 返回 · Back</button></div>
-    <div class="page-title">樂器音色 <em>·</em> 左右對比<span class="en">Instrument Timbre · Side-by-Side Comparison</span></div>
-    <div class="page-desc">左右各選一種樂器並按下琴鍵，並排比較諧波頻譜、波形與泛音結構 · Choose one instrument on each side and press a key — compare their spectra, waveforms and overtones in parallel</div>
+    <div class="hero-top"><span class="chapter-badge">Chapter II</span><div class="hero-divider"></div><button class="back-btn" onclick="goPage('home')">← Back</button></div>
+    <div class="page-title">Instrument Timbre <em>·</em> Harmonic Analysis</div>
+    <div class="page-desc">Choose an instrument, press keys to hear the synthesized timbre, and explore each instrument's unique harmonic structure</div>
   </div>
   <div class="page-body">
-
-    <div class="compare-grid mb">
-
-      <!-- LEFT column -->
-      <div class="card left-col">
-        <div class="p2-col-header" style="background:linear-gradient(135deg,rgba(255,154,158,.07),rgba(255,179,71,.04))">
-          <div class="cdot" style="background:linear-gradient(135deg,#FF9A9E,#FFB347)"></div>
-          <span class="p2-col-label">左側 — <b id="p2L-name">鋼琴</b><span class="en">Left — Piano</span></span>
-          <span style="margin-left:auto;font-size:.54rem" id="p2L-note">—</span>
-        </div>
-        <div class="compare-inst-row" id="p2L-inst">
-          <button class="cib active" data-i="piano"    onclick="p2SI('L','piano',this)"><span class="cib-icon">🎹</span>鋼琴<span class="en">Piano</span></button>
-          <button class="cib"        data-i="violin"   onclick="p2SI('L','violin',this)"><span class="cib-icon">🎻</span>小提琴<span class="en">Violin</span></button>
-          <button class="cib"        data-i="guitar"   onclick="p2SI('L','guitar',this)"><span class="cib-icon">🎸</span>吉他<span class="en">Guitar</span></button>
-          <button class="cib"        data-i="clarinet" onclick="p2SI('L','clarinet',this)"><span class="cib-icon">🎵</span>單簧管<span class="en">Clarinet</span></button>
-          <button class="cib"        data-i="oboe"     onclick="p2SI('L','oboe',this)"><span class="cib-icon">🎶</span>雙簧管<span class="en">Oboe</span></button>
-        </div>
-        <div class="piano-wrap"><div class="piano" id="pianoL"></div></div>
-        <div class="cstrip" style="padding:.55rem 1rem"><button class="btn btn-stop" style="font-size:.52rem" onclick="p2Stop('L')">■ 停止 · Stop</button></div>
-        <div class="cw"><canvas id="p2L-sc" class="viz" height="160"></canvas><div class="cl">頻譜 · Spectrum</div></div>
-        <div class="cw" style="border-top:1px solid var(--border2)"><canvas id="p2L-wc" class="viz" height="130"></canvas><div class="cl">波形 · Waveform</div></div>
-        <table class="ht" id="p2L-ht" style="border-top:1px solid var(--border2)">
-          <thead><tr><th></th><th>n</th><th>Hz</th><th>振幅 · Amp</th><th>類型 · Type</th></tr></thead>
-          <tbody><tr><td colspan="5" style="padding:.8rem;color:var(--text3);text-align:center;font-size:.58rem">按下琴鍵 · Press a key</td></tr></tbody>
-        </table>
-      </div>
-
-      <!-- RIGHT column -->
-      <div class="card right-col">
-        <div class="p2-col-header" style="background:linear-gradient(135deg,rgba(142,197,252,.07),rgba(224,195,252,.04))">
-          <div class="cdot" style="background:linear-gradient(135deg,#8EC5FC,#E0C3FC)"></div>
-          <span class="p2-col-label">右側 — <b id="p2R-name">小提琴</b><span class="en">Right — Violin</span></span>
-          <span style="margin-left:auto;font-size:.54rem" id="p2R-note">—</span>
-        </div>
-        <div class="compare-inst-row" id="p2R-inst">
-          <button class="cib"        data-i="piano"    onclick="p2SI('R','piano',this)"><span class="cib-icon">🎹</span>鋼琴<span class="en">Piano</span></button>
-          <button class="cib active" data-i="violin"   onclick="p2SI('R','violin',this)"><span class="cib-icon">🎻</span>小提琴<span class="en">Violin</span></button>
-          <button class="cib"        data-i="guitar"   onclick="p2SI('R','guitar',this)"><span class="cib-icon">🎸</span>吉他<span class="en">Guitar</span></button>
-          <button class="cib"        data-i="clarinet" onclick="p2SI('R','clarinet',this)"><span class="cib-icon">🎵</span>單簧管<span class="en">Clarinet</span></button>
-          <button class="cib"        data-i="oboe"     onclick="p2SI('R','oboe',this)"><span class="cib-icon">🎶</span>雙簧管<span class="en">Oboe</span></button>
-        </div>
-        <div class="piano-wrap"><div class="piano" id="pianoR"></div></div>
-        <div class="cstrip" style="padding:.55rem 1rem"><button class="btn btn-stop" style="font-size:.52rem" onclick="p2Stop('R')">■ 停止 · Stop</button></div>
-        <div class="cw"><canvas id="p2R-sc" class="viz" height="160"></canvas><div class="cl">頻譜 · Spectrum</div></div>
-        <div class="cw" style="border-top:1px solid var(--border2)"><canvas id="p2R-wc" class="viz" height="130"></canvas><div class="cl">波形 · Waveform</div></div>
-        <table class="ht" id="p2R-ht" style="border-top:1px solid var(--border2)">
-          <thead><tr><th></th><th>n</th><th>Hz</th><th>振幅 · Amp</th><th>類型 · Type</th></tr></thead>
-          <tbody><tr><td colspan="5" style="padding:.8rem;color:var(--text3);text-align:center;font-size:.58rem">按下琴鍵 · Press a key</td></tr></tbody>
-        </table>
-      </div>
-
+    <div class="inst-row" id="instr">
+      <button class="ib active" data-i="piano"    onclick="s3SI(this)"><span class="ib-icon">🎹</span>Piano</button>
+      <button class="ib"        data-i="violin"   onclick="s3SI(this)"><span class="ib-icon">🎻</span>Violin</button>
+      <button class="ib"        data-i="guitar"   onclick="s3SI(this)"><span class="ib-icon">🎸</span>Guitar</button>
+      <button class="ib"        data-i="clarinet" onclick="s3SI(this)"><span class="ib-icon">🎵</span>Clarinet</button>
+      <button class="ib"        data-i="oboe"     onclick="s3SI(this)"><span class="ib-icon">🎶</span>Oboe</button>
+    </div>
+    <div class="card mb">
+      <div class="card-hd"><div class="cdot" style="background:linear-gradient(135deg,#E0C3FC,#8EC5FC)"></div><div class="cht">Keyboard</div><div class="spill" style="margin-left:auto">Instrument <b id="s3-in">Piano</b> · Note <b id="s3-nn">—</b></div></div>
+      <div class="piano-wrap"><div class="piano" id="piano3"></div></div>
+      <div class="cstrip"><button class="btn btn-stop" onclick="s3Stop()">■ Stop</button></div>
+    </div>
+    <div class="g2 mb">
+      <div class="card"><div class="card-hd"><div class="cdot" style="background:#8EC5FC"></div><div class="cht">Timbre Spectrum — Harmonic Amplitudes</div></div><div class="cw"><canvas id="s3-sc" class="viz" height="195"></canvas></div></div>
+      <div class="card"><div class="card-hd"><div class="cdot" style="background:#E0C3FC"></div><div class="cht">Harmonic Sine Wave Superposition</div></div><div class="cw"><canvas id="s3-wc" class="viz" height="195"></canvas></div></div>
+    </div>
+    <div class="card">
+      <div class="card-hd"><div class="cdot" style="background:#FECFEF"></div><div class="cht">Fundamental & Overtone Analysis</div></div>
+      <table class="ht" id="s3-ht"><thead><tr><th></th><th>n</th><th>Frequency (Hz)</th><th>Rel. Amplitude</th><th>Type</th></tr></thead><tbody></tbody></table>
     </div>
   </div>
 </div></div>
@@ -479,28 +385,28 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 <!-- PAGE 3 — DRAW -->
 <div class="page" id="page-p3"><div class="subpage">
   <div class="page-hero">
-    <div class="hero-top"><span class="chapter-badge">第三章 · Chapter III</span><div class="hero-divider"></div><button class="back-btn" onclick="goPage('home')">← 返回 · Back</button></div>
-    <div class="page-title">畫波形 <em>·</em> 聽你的聲音<span class="en">Draw Waveforms · Hear Your Sound</span></div>
-    <div class="page-desc">在畫布上繪製任意波形，系統進行傅立葉分析後即時播放對應聲音 · Draw any waveform — the system runs a Fourier analysis and plays the sound in real time</div>
+    <div class="hero-top"><span class="chapter-badge">Chapter III</span><div class="hero-divider"></div><button class="back-btn" onclick="goPage('home')">← Back</button></div>
+    <div class="page-title">Draw Waveforms <em>·</em> Hear Your Sound</div>
+    <div class="page-desc">Draw any waveform on the canvas — the system runs a Fourier analysis and plays the corresponding sound in real time</div>
   </div>
   <div class="page-body">
     <div class="card mb">
-      <div class="card-hd"><div class="cdot" style="background:linear-gradient(135deg,#8EC5FC,#E0C3FC)"></div><div class="cht">繪製區域 — 拖曳畫出一個週期 · Drawing Area — Drag to draw one period</div></div>
-      <div class="draw-box"><canvas id="dc" height="220"></canvas><div class="draw-hint" id="dh">拖曳此處繪製波形 · Drag here to draw a waveform</div></div>
+      <div class="card-hd"><div class="cdot" style="background:linear-gradient(135deg,#8EC5FC,#E0C3FC)"></div><div class="cht">Drawing Area — Drag to draw one period</div></div>
+      <div class="draw-box"><canvas id="dc" height="220"></canvas><div class="draw-hint" id="dh">Drag here to draw a waveform</div></div>
       <div class="cstrip">
-        <button class="btn btn-sky" onclick="s2Play()">▶ 播放 · Play Sound</button>
-        <button class="btn btn-stop" onclick="s2Stop()">■ 停止 · Stop</button>
-        <button class="btn" onclick="s2Clear()">↺ 清除 · Clear</button>
+        <button class="btn btn-sky" onclick="s2Play()">▶ Play Sound</button>
+        <button class="btn btn-stop" onclick="s2Stop()">■ Stop</button>
+        <button class="btn" onclick="s2Clear()">↺ Clear</button>
         <div style="width:1px;height:16px;background:var(--border);flex-shrink:0;"></div>
-        <button class="btn" onclick="s2Pre('sine')">〜 正弦 · Sine</button>
-        <button class="btn" onclick="s2Pre('sq')">⊓ 方波 · Square</button>
-        <button class="btn" onclick="s2Pre('saw')">◤ 鋸齒 · Sawtooth</button>
-        <button class="btn" onclick="s2Pre('tri')">△ 三角 · Triangle</button>
+        <button class="btn" onclick="s2Pre('sine')">〜 Sine</button>
+        <button class="btn" onclick="s2Pre('sq')">⊓ Square</button>
+        <button class="btn" onclick="s2Pre('saw')">◤ Sawtooth</button>
+        <button class="btn" onclick="s2Pre('tri')">△ Triangle</button>
       </div>
     </div>
     <div class="g2">
-      <div class="card"><div class="card-hd"><div class="cdot" style="background:#8EC5FC"></div><div class="cht">傅立葉頻譜係數 · Fourier Spectrum Coefficients</div></div><div class="cw"><canvas id="s2-sc" class="viz" height="160"></canvas></div></div>
-      <div class="card"><div class="card-hd"><div class="cdot" style="background:#E0C3FC"></div><div class="cht">重建波形（反傅立葉）· Reconstructed Waveform (Inverse Fourier)</div></div><div class="cw"><canvas id="s2-rc" class="viz" height="160"></canvas></div></div>
+      <div class="card"><div class="card-hd"><div class="cdot" style="background:#8EC5FC"></div><div class="cht">Fourier Spectrum Coefficients</div></div><div class="cw"><canvas id="s2-sc" class="viz" height="160"></canvas></div></div>
+      <div class="card"><div class="card-hd"><div class="cdot" style="background:#E0C3FC"></div><div class="cht">Reconstructed Waveform (Inverse Fourier)</div></div><div class="cw"><canvas id="s2-rc" class="viz" height="160"></canvas></div></div>
     </div>
   </div>
 </div></div>
@@ -508,78 +414,71 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 <!-- PAGE 4 — RECORDING -->
 <div class="page" id="page-p4"><div class="subpage">
   <div class="page-hero">
-    <div class="hero-top"><span class="chapter-badge">第四章 · Chapter IV</span><div class="hero-divider"></div><button class="back-btn" onclick="goPage('home')">← 返回 · Back</button></div>
-    <div class="page-title">即時錄音 <em>·</em> 頻譜分解<span class="en">Live Recording · Spectrum Decomposition</span></div>
-    <div class="page-desc">錄下你的聲音，系統將音訊分解成各頻率的正弦波成分 · Record your voice and the system decomposes the audio into individual sine wave components</div>
+    <div class="hero-top"><span class="chapter-badge">Chapter IV</span><div class="hero-divider"></div><button class="back-btn" onclick="goPage('home')">← Back</button></div>
+    <div class="page-title">Live Recording <em>·</em> Spectrum Decomposition</div>
+    <div class="page-desc">Record your voice and the system decomposes the audio into individual sine wave components at each frequency</div>
   </div>
   <div class="page-body">
     <div class="card mb">
-      <div class="card-hd"><div class="cdot" style="background:linear-gradient(135deg,#FF9A9E,#FECFEF)"></div><div class="cht">錄音控制 · Recording Controls</div></div>
-
+      <div class="card-hd"><div class="cdot" style="background:linear-gradient(135deg,#FF9A9E,#FECFEF)"></div><div class="cht">Recording Controls</div></div>
       <!-- Mic permission prompt -->
       <div id="mic-prompt" style="display:flex;flex-direction:column;align-items:center;gap:.9rem;padding:1.8rem 1.5rem;text-align:center;">
         <div style="font-size:2.8rem">🎙️</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:var(--text)">需要麥克風存取權限<span class="en">Microphone Access Required</span></div>
-        <div style="font-size:.6rem;color:var(--text3);line-height:1.9;max-width:380px">
-          本頁面需要麥克風權限才能錄音與分析。<br>
-          點擊下方按鈕，瀏覽器會跳出授權視窗，請選擇<b>允許</b>。<br>
-          你的音訊僅在本地端處理，不會上傳。<br>
-          <span class="en">Click the button below — your browser will show a permission dialog. Choose <b>Allow</b>. Your audio is processed locally and never uploaded.</span>
-        </div>
-        <button class="btn btn-accent" style="font-size:.65rem;padding:.55rem 1.8rem" onclick="reqMicPerm()">🎙️ 啟用麥克風 · Enable Microphone</button>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:var(--text)">Microphone Access Required</div>
+        <div style="font-size:.6rem;color:var(--text3);line-height:1.9;max-width:340px">Click the button below — your browser will ask whether to allow microphone access.<br>Click <b>Allow</b> to start recording and analysis.</div>
+        <button class="btn btn-accent" style="font-size:.65rem;padding:.55rem 1.8rem" onclick="reqMicPerm()">🎙️ Allow Microphone Access</button>
         <div id="mic-err" style="font-size:.58rem;color:#c0392b;display:none"></div>
-        <div style="font-size:.52rem;color:var(--text3);max-width:340px;line-height:1.8;margin-top:.2rem">
-          ⚠ 若不小心點了拒絕，請點地址列的 🔒 → 網站設定 → 麥克風 → 允許，再重新整理頁面。<br>
-          <span class="en">If you clicked Deny by mistake, click 🔒 in the address bar → Site settings → Microphone → Allow, then refresh.</span>
-        </div>
       </div>
-
       <!-- Recording panel (hidden until permission granted) -->
       <div id="rec-main" style="display:none">
         <div class="rec-panel">
           <button class="rec-ring" id="rr" onclick="toggleRec()">🎙️</button>
           <div class="rec-info">
-            <div class="rec-st" id="rst">點擊麥克風開始錄音 · Click the microphone to start recording</div>
+            <div class="rec-st" id="rst">Click the microphone to start recording</div>
             <div class="lv-wrap"><div class="lv-fill" id="lvf"></div></div>
           </div>
-          <button class="btn btn-accent" id="s4pb" style="display:none" onclick="s4Play()">▶ 播放 · Play</button>
-          <button class="btn btn-stop"   id="s4sb" style="display:none" onclick="s4StopP()">■ 停止 · Stop</button>
+          <button class="btn btn-accent" id="s4pb" style="display:none" onclick="s4Play()">▶ Play</button>
+          <button class="btn btn-stop"   id="s4sb" style="display:none" onclick="s4StopP()">■ Stop</button>
         </div>
       </div>
-      <div class="cw" style="border-top:1px solid var(--border2)"><canvas id="s4rt" class="viz" height="200"></canvas><div class="cl">即時頻譜 (FFT) · Live Spectrum</div></div>
+      <div class="cw" style="border-top:1px solid var(--border2)"><canvas id="s4rt" class="viz" height="200"></canvas><div class="cl">Live Spectrum (FFT)</div></div>
     </div>
     <div class="g2 mb">
-      <div class="card"><div class="card-hd"><div class="cdot" style="background:#FF9A9E"></div><div class="cht">錄音波形 · Recorded Waveform</div></div><div class="cw"><canvas id="s4wv" class="viz" height="120"></canvas></div></div>
-      <div class="card"><div class="card-hd"><div class="cdot" style="background:#FECFEF"></div><div class="cht">前10大頻率成分 · Top 10 Frequency Components</div></div><div class="cw"><canvas id="s4tp" class="viz" height="120"></canvas></div></div>
+      <div class="card"><div class="card-hd"><div class="cdot" style="background:#FF9A9E"></div><div class="cht">Recorded Waveform</div></div><div class="cw"><canvas id="s4wv" class="viz" height="120"></canvas></div></div>
+      <div class="card"><div class="card-hd"><div class="cdot" style="background:#FECFEF"></div><div class="cht">Top 10 Frequency Components</div></div><div class="cw"><canvas id="s4tp" class="viz" height="120"></canvas></div></div>
     </div>
-    <div class="card"><div class="card-hd"><div class="cdot" style="background:#E0C3FC"></div><div class="cht">各正弦波成分 — 最強6個 · Individual Sine Wave Components — Strongest 6</div></div><div class="cw"><canvas id="s4si" class="viz" height="210"></canvas></div></div>
+    <div class="card"><div class="card-hd"><div class="cdot" style="background:#E0C3FC"></div><div class="cht">Individual Sine Wave Components — Strongest 6</div></div><div class="cw"><canvas id="s4si" class="viz" height="210"></canvas></div></div>
   </div>
 </div></div>
 
 <!-- PAGE 5 — BATTLE -->
 <div class="page" id="page-p5"><div class="subpage">
   <div class="page-hero">
-    <div class="hero-top"><span class="chapter-badge">第五章 · Chapter V</span><div class="hero-divider"></div><button class="back-btn" onclick="goPage('home')">← 返回 · Back</button></div>
-    <div class="page-title">聲波 <em>·</em> PK 對決<span class="en">Sound Wave · PK Battle</span></div>
-    <div class="page-desc">兩名玩家各選樂器發射波形攻擊，頻率越高傷害越大。頻率與振幅相同時波形相消！ · Two players fire wave attacks — higher frequency = more damage. Equal frequency &amp; amplitude cancel out!</div>
+    <div class="hero-top"><span class="chapter-badge">Chapter V</span><div class="hero-divider"></div><button class="back-btn" onclick="goPage('home')">← Back</button></div>
+    <div class="page-title">Sound Wave <em>·</em> PK Battle</div>
+    <div class="page-desc">Two players each choose an instrument and fire wave attacks — higher frequency deals more damage. Waves cancel out if they share the same frequency and amplitude!</div>
   </div>
   <div class="page-body">
-    <div class="card mb" style="background:#ffffff;border-color:var(--border)">
-      <div class="card-hd" style="background:var(--bg2);border-bottom:1px solid var(--border)">
+
+    <!-- How to Play Banner -->
+    <div class="card mb" style="background:linear-gradient(135deg,rgba(168,230,207,.12),rgba(246,211,101,.08));border-color:rgba(168,230,207,.3)">
+      <div class="card-hd" style="background:transparent;border-bottom:1px solid rgba(168,230,207,.2)">
         <div class="cdot" style="background:linear-gradient(135deg,#a8e6cf,#f6d365)"></div>
-        <div class="cht">遊戲說明 · How to Play</div>
+        <div class="cht" style="color:#3a9a7a">How to Play</div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.6rem 1.5rem;padding:.9rem 1.25rem;font-size:.6rem;color:var(--text);line-height:1.8">
-        <div><b>① 選擇樂器</b><br>每位玩家選一種樂器，各有獨特泛音與傷害加成。<span class="en">Each player picks an instrument with unique harmonics and damage bonus.</span></div>
-        <div><b>② 設定頻率</b><br>頻率越高攻擊傷害越大，範圍 100–2000 Hz。<span class="en">Higher frequency = higher damage. Range: 100–2000 Hz.</span></div>
-        <div><b>③ 設定振幅</b><br>振幅 1–10，越高波包越大，傷害加成越多。<span class="en">Amplitude 1–10. Higher = larger wave and more bonus damage.</span></div>
-        <div><b>④ 發射！</b><br>按下 ⚡ 攻擊，波形飛向對手造成傷害。<span class="en">Press ⚡ Attack. A wave packet flies toward your opponent.</span></div>
-        <div><b>⑤ 波形相消</b><br>兩人同時射出相同頻率與振幅的波形 → 互相抵銷，無傷！<span class="en">Same frequency AND amplitude from both → waves cancel — no damage!</span></div>
-        <div><b>⑥ 勝利條件</b><br>率先將對手 HP 降至 0 者獲勝。<span class="en">Reduce the opponent's HP to 0 first.</span></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.6rem 1.5rem;padding:.9rem 1.25rem;font-size:.6rem;color:var(--text2);line-height:1.8">
+        <div><b style="color:var(--text)">① Choose Instrument</b><br>Each player picks a different instrument from the panel below. Each has unique harmonics and a damage bonus.</div>
+        <div><b style="color:var(--text)">② Set Frequency</b><br>Drag the frequency slider — higher frequency = higher damage per attack. Range: 100 Hz to 2000 Hz.</div>
+        <div><b style="color:var(--text)">③ Set Amplitude</b><br>Adjust the amplitude slider (1–10). Higher amplitude = larger wave projectile and more bonus damage.</div>
+        <div><b style="color:var(--text)">④ Fire!</b><br>Press ⚡ Attack. A wave packet flies across the arena toward your opponent and deals damage on impact.</div>
+        <div><b style="color:var(--text)">⑤ Wave Cancellation</b><br>If both players fire waves with the <em>same frequency and amplitude</em> simultaneously, the waves cancel each other out — no damage!</div>
+        <div><b style="color:var(--text)">⑥ Win Condition</b><br>Reduce the opponent's HP to 0 first. Watch the HP bars — they glow red when health is critically low!</div>
       </div>
     </div>
 
+    <!-- TOP: Battlefield canvas -->
     <div class="card mb" style="overflow:hidden">
+      <!-- HP row -->
       <div style="padding:.85rem 1.2rem .7rem;border-bottom:1px solid var(--border2);background:var(--bg2)">
         <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.4rem">
           <span id="b-p1name" style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;min-width:72px;white-space:nowrap">🎹 Piano</span>
@@ -599,91 +498,101 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
           <span id="b-p2name" style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;min-width:72px;text-align:right;white-space:nowrap">🎹 Piano</span>
         </div>
         <div style="display:flex;justify-content:space-between;padding:0 .1rem">
-          <span style="font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">玩家1血量 · Player 1 HP</span>
-          <span style="font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">玩家2血量 · Player 2 HP</span>
+          <span style="font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">Player 1 HP</span>
+          <span style="font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">Player 2 HP</span>
         </div>
       </div>
+      <!-- Battlefield -->
       <div style="position:relative;background:#f6f6f8">
         <canvas id="b-arena" height="200" style="display:block;width:100%"></canvas>
         <div id="b-result" style="display:none;position:absolute;inset:0;background:rgba(250,250,250,.88);backdrop-filter:blur(6px);align-items:center;justify-content:center;flex-direction:column;gap:.6rem">
           <div id="b-result-text" style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600"></div>
-          <button class="btn btn-accent" style="font-size:.62rem;padding:.45rem 1.5rem" onclick="bReset()">↺ 再玩一次 · Play Again</button>
+          <button class="btn btn-accent" style="font-size:.62rem;padding:.45rem 1.5rem" onclick="bReset()">↺ Play Again</button>
         </div>
       </div>
-      <div id="b-log" style="padding:.5rem 1.2rem;font-size:.58rem;color:var(--text2);min-height:32px;background:var(--bg2);border-top:1px solid var(--border2);letter-spacing:.03em">— 等待行動 · Waiting for action —</div>
+      <div id="b-log" style="padding:.5rem 1.2rem;font-size:.58rem;color:var(--text2);min-height:32px;background:var(--bg2);border-top:1px solid var(--border2);letter-spacing:.03em">— Waiting for action —</div>
     </div>
 
+    <!-- BOTTOM: Left-right fighter panels -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem" class="mb">
+
+      <!-- Player 1 -->
       <div class="card">
         <div class="fighter-head" style="background:linear-gradient(135deg,rgba(255,154,158,.08),rgba(255,179,71,.04))">
           <span style="font-size:1.4rem" id="b-icon1">🎹</span>
           <div style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;background:linear-gradient(135deg,#FF9A9E,#FFB347);-webkit-background-clip:text;background-clip:text;color:transparent" id="b-fname1">Piano</div>
-          <span style="margin-left:auto;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">玩家1 · Player 1</span>
+          <span style="margin-left:auto;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">Player 1</span>
         </div>
         <div style="padding:.9rem 1rem;display:flex;flex-direction:column;gap:.65rem">
           <div>
-            <div style="font-size:.5rem;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem">選擇樂器 · Choose Instrument</div>
+            <div style="font-size:.5rem;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem">Choose Instrument</div>
             <div class="inst-mini" id="b-inst1">
-              <button data-i="piano"    class="active" onclick="bSelectInst(1,'piano',this)">🎹 鋼琴</button>
-              <button data-i="violin"   onclick="bSelectInst(1,'violin',this)">🎻 小提琴</button>
-              <button data-i="guitar"   onclick="bSelectInst(1,'guitar',this)">🎸 吉他</button>
-              <button data-i="clarinet" onclick="bSelectInst(1,'clarinet',this)">🎵 單簧管</button>
-              <button data-i="oboe"     onclick="bSelectInst(1,'oboe',this)">🎶 雙簧管</button>
+              <button data-i="piano"    class="active" onclick="bSelectInst(1,'piano',this)">🎹 Piano</button>
+              <button data-i="violin"   onclick="bSelectInst(1,'violin',this)">🎻 Violin</button>
+              <button data-i="guitar"   onclick="bSelectInst(1,'guitar',this)">🎸 Guitar</button>
+              <button data-i="clarinet" onclick="bSelectInst(1,'clarinet',this)">🎵 Clarinet</button>
+              <button data-i="oboe"     onclick="bSelectInst(1,'oboe',this)">🎶 Oboe</button>
             </div>
           </div>
           <div>
-            <div style="font-size:.5rem;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem">攻擊頻率 · Attack Frequency</div>
+            <div style="font-size:.5rem;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem">Attack Frequency</div>
             <div class="freq-row p1-slider">
               <input type="range" min="100" max="2000" value="440" oninput="bSetFreq(1,+this.value)">
               <span id="b-freq1" style="font-size:.65rem;font-weight:500;min-width:58px">440 Hz</span>
             </div>
           </div>
           <div>
-            <div style="font-size:.5rem;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem">攻擊振幅 · Attack Amplitude</div>
+            <div style="font-size:.5rem;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem">Attack Amplitude</div>
             <div class="freq-row p1-slider">
               <input type="range" min="1" max="10" value="5" step="1" oninput="bSetAmp(1,+this.value)">
               <span id="b-amp1" style="font-size:.65rem;font-weight:500;min-width:36px">5</span>
             </div>
           </div>
-          <button class="atk-btn" style="background:linear-gradient(135deg,#FF9A9E,#FFB347)" onclick="bAttack(1)">⚡ 攻擊 · Attack!</button>
+          <button class="atk-btn" style="background:linear-gradient(135deg,#FF9A9E,#FFB347)" onclick="bAttack(1)">⚡ Attack!</button>
         </div>
       </div>
+
+      <!-- Player 2 -->
       <div class="card">
         <div class="fighter-head" style="background:linear-gradient(135deg,rgba(142,197,252,.08),rgba(224,195,252,.04))">
           <span style="font-size:1.4rem" id="b-icon2">🎹</span>
           <div style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;background:linear-gradient(135deg,#8EC5FC,#E0C3FC);-webkit-background-clip:text;background-clip:text;color:transparent" id="b-fname2">Piano</div>
-          <span style="margin-left:auto;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">玩家2 · Player 2</span>
+          <span style="margin-left:auto;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">Player 2</span>
         </div>
         <div style="padding:.9rem 1rem;display:flex;flex-direction:column;gap:.65rem">
           <div>
-            <div style="font-size:.5rem;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem">選擇樂器 · Choose Instrument</div>
+            <div style="font-size:.5rem;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem">Choose Instrument</div>
             <div class="inst-mini" id="b-inst2">
-              <button data-i="piano"    class="active" onclick="bSelectInst(2,'piano',this)">🎹 鋼琴</button>
-              <button data-i="violin"   onclick="bSelectInst(2,'violin',this)">🎻 小提琴</button>
-              <button data-i="guitar"   onclick="bSelectInst(2,'guitar',this)">🎸 吉他</button>
-              <button data-i="clarinet" onclick="bSelectInst(2,'clarinet',this)">🎵 單簧管</button>
-              <button data-i="oboe"     onclick="bSelectInst(2,'oboe',this)">🎶 雙簧管</button>
+              <button data-i="piano"    class="active" onclick="bSelectInst(2,'piano',this)">🎹 Piano</button>
+              <button data-i="violin"   onclick="bSelectInst(2,'violin',this)">🎻 Violin</button>
+              <button data-i="guitar"   onclick="bSelectInst(2,'guitar',this)">🎸 Guitar</button>
+              <button data-i="clarinet" onclick="bSelectInst(2,'clarinet',this)">🎵 Clarinet</button>
+              <button data-i="oboe"     onclick="bSelectInst(2,'oboe',this)">🎶 Oboe</button>
             </div>
           </div>
           <div>
-            <div style="font-size:.5rem;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem">攻擊頻率 · Attack Frequency</div>
+            <div style="font-size:.5rem;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem">Attack Frequency</div>
             <div class="freq-row p2-slider">
               <input type="range" min="100" max="2000" value="440" oninput="bSetFreq(2,+this.value)">
               <span id="b-freq2" style="font-size:.65rem;font-weight:500;min-width:58px">440 Hz</span>
             </div>
           </div>
           <div>
-            <div style="font-size:.5rem;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem">攻擊振幅 · Attack Amplitude</div>
+            <div style="font-size:.5rem;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem">Attack Amplitude</div>
             <div class="freq-row p2-slider">
               <input type="range" min="1" max="10" value="5" step="1" oninput="bSetAmp(2,+this.value)">
               <span id="b-amp2" style="font-size:.65rem;font-weight:500;min-width:36px">5</span>
             </div>
           </div>
-          <button class="atk-btn" style="background:linear-gradient(135deg,#8EC5FC,#E0C3FC);color:#2a3a6b" onclick="bAttack(2)">⚡ 攻擊 · Attack!</button>
+          <button class="atk-btn" style="background:linear-gradient(135deg,#8EC5FC,#E0C3FC);color:#2a3a6b" onclick="bAttack(2)">⚡ Attack!</button>
         </div>
       </div>
     </div>
-    <div style="text-align:center"><button class="btn" onclick="bReset()" style="font-size:.62rem;padding:.48rem 1.8rem">↺ 重新開始 · Restart</button></div>
+
+    <div style="text-align:center">
+      <button class="btn" onclick="bReset()" style="font-size:.62rem;padding:.48rem 1.8rem">↺ Restart</button>
+    </div>
+
   </div>
 </div></div>
 
@@ -708,7 +617,6 @@ function goPage(id){
   setTimeout(()=>{
     if(id==='p3')resizeDraw();
     if(id==='p5'){const cv=document.getElementById('b-arena');if(cv)cv.width=cv.offsetWidth;if(bArenaAnim)cancelAnimationFrame(bArenaAnim);bInitWaves();}
-    if(id==='p1')s1Update();
   },80);
 }
 function navScroll(dx){document.querySelector('.nav-scroll').scrollBy({left:dx,behavior:'smooth'});}
@@ -779,214 +687,101 @@ function drawSineBar(cx,W,H,x,bw,y,bh,g1,g2,n){
 }
 
 // ══════════════════════════════════════════
-//  PAGE 1 — SYNTH SLIDERS
+//  PAGE 1 — PIANO
 // ══════════════════════════════════════════
-let s1WT='sine';
-let s1harmAmps=[1,.62,.44,.3,.2,.13,.08,.05]; // custom harmonics
-let s1Playing=false, s1OscNodes=[], s1GainNode=null;
-
-// Build custom harmonic sliders
-(function(){
-  const wrap=document.getElementById('s1-harm-sliders');
-  s1harmAmps.forEach((a,i)=>{
-    const div=document.createElement('div');
-    div.style.cssText='display:flex;flex-direction:column;align-items:center;gap:.25rem;min-width:44px;';
-    div.innerHTML=`<span style="font-size:.48rem;color:var(--text3)">n=${i+1}</span>
-      <input type="range" min="0" max="1" step="0.01" value="${a}" style="writing-mode:vertical-lr;direction:rtl;height:70px;width:18px;cursor:pointer;" oninput="s1harmAmps[${i}]=+this.value;s1Update()">
-      <span style="font-size:.48rem;color:var(--text)" id="sh${i}">${a.toFixed(2)}</span>`;
-    wrap.appendChild(div);
-    div.querySelector('input').addEventListener('input',function(){document.getElementById('sh'+i).textContent=(+this.value).toFixed(2);});
-  });
-})();
-
-function s1SetWT(btn){
-  document.querySelectorAll('.wt-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
-  s1WT=btn.dataset.wt;
-  document.getElementById('s1-harm-row').style.display=s1WT==='custom'?'block':'none';
-  s1Update();
-  if(s1Playing)s1StartSound();
-}
-
-function freqToNote(f){
-  const m=Math.round(12*Math.log2(f/440)+69);
-  const cents=Math.round((12*Math.log2(f/440)+69-m)*100);
-  const name=NT[((m%12)+12)%12]+(Math.floor(m/12)-1);
-  return cents===0?name:`${name} ${cents>0?'+':''}${cents}¢`;
-}
-
-function getHarmonicsForWT(f){
-  if(s1WT==='sine') return [{n:1,freq:f,amp:1}];
-  if(s1WT==='square'){
-    const r=[];for(let n=1;n<=15;n+=2)r.push({n,freq:f*n,amp:1/n});return r;
-  }
-  if(s1WT==='sawtooth'){
-    const r=[];for(let n=1;n<=12;n++)r.push({n,freq:f*n,amp:1/n});return r;
-  }
-  if(s1WT==='triangle'){
-    const r=[];for(let n=1;n<=13;n+=2)r.push({n,freq:f*n,amp:1/(n*n)*(n%4===1?1:-1)});return r;
-  }
-  // custom
-  return s1harmAmps.map((a,i)=>({n:i+1,freq:f*(i+1),amp:a})).filter(h=>h.amp>0.005);
-}
-
-function s1Update(){
-  const freq=+document.getElementById('s1-freq-sl').value;
-  const amp=+document.getElementById('s1-amp-sl').value;
-  // update slider track fill
-  const fPct=((freq-55)/(2000-55)*100).toFixed(1);
-  const aPct=((amp-0.01)/(1-0.01)*100).toFixed(1);
-  document.getElementById('s1-freq-sl').style.setProperty('--pct',fPct+'%');
-  document.getElementById('s1-amp-sl').style.setProperty('--pct',aPct+'%');
-  // labels
-  document.getElementById('s1-freq-val').textContent=freq+' Hz';
-  document.getElementById('s1-amp-val').textContent=amp.toFixed(2);
-  document.getElementById('s1-fval').textContent=freq+' Hz';
-  document.getElementById('s1-aval').textContent=amp.toFixed(2);
-  document.getElementById('s1-freq-disp').innerHTML=freq+'<sub> Hz</sub>';
-  document.getElementById('s1-fn').textContent=freqToNote(freq)+' — '+freq.toFixed(1)+' Hz';
-  document.getElementById('s1-nn').textContent=freqToNote(freq);
-  const H=getHarmonicsForWT(freq).map(h=>({...h,amp:h.amp*amp}));
-  // formula
+let s1midi=null,s1node=null;
+const piH=f=>[1,.62,.44,.3,.2,.13,.08,.05].map((a,i)=>({n:i+1,freq:f*(i+1),amp:a}));
+function s1Press(midi,el){
+  s1Stop();s1midi=midi;
+  document.querySelectorAll('#piano1 .wk,#piano1 .bk').forEach(k=>k.classList.remove('pressed'));el.classList.add('pressed');
+  const f=mf(midi),name=mn(midi);
+  document.getElementById('s1-nn').textContent=name;
+  document.getElementById('s1-fn').textContent=name+' — MIDI '+midi;
+  document.getElementById('s1-freq').innerHTML=f.toFixed(2)+'<sub> Hz</sub>';
+  const H=piH(f);
   document.getElementById('s1-fml').innerHTML=
     `<span style="color:#e07050">f(t)</span> = `+
     H.slice(0,4).map((h,i)=>`<span style="color:${COLS[i]}">${h.amp.toFixed(3)}·sin(2π·<b>${h.freq.toFixed(1)}</b>·t)</span>`).join(' + ')+
-    (H.length>4?' <span style="color:var(--text3)">+ …</span>':'');
-  // overtone table
+    ' <span style="color:var(--text3)">+ …</span>';
   const tb=document.getElementById('s1-ht').querySelector('tbody');
-  tb.innerHTML=H.map((h,i)=>`<tr><td><span class="hdot" style="background:${GRADS[i%8][0]}"></span>${h.n}</td><td>${h.freq.toFixed(2)} Hz</td><td><div style="display:flex;align-items:center;gap:.35rem"><div class="hbar" style="width:${Math.min(h.amp/amp,1)*70}px;background:linear-gradient(90deg,${GRADS[i%8][0]},${GRADS[i%8][1]})"></div>${h.amp.toFixed(3)}</div></td><td style="color:${i===0?'#e07050':'var(--text3)'}">${i===0?'<b>Fundamental</b>':'Overtone n='+h.n}</td></tr>`).join('');
-  drawS1Spec(H,amp);drawS1Wave(H,amp);
-  if(s1Playing)s1UpdateSoundGain(amp);
+  tb.innerHTML=H.map((h,i)=>`<tr><td><span class="hdot" style="background:${GRADS[i%8][0]}"></span>${h.n}</td><td>${h.freq.toFixed(2)} Hz</td><td><div style="display:flex;align-items:center;gap:.35rem"><div class="hbar" style="width:${h.amp*70}px;background:linear-gradient(90deg,${GRADS[i%8][0]},${GRADS[i%8][1]})"></div>${h.amp.toFixed(3)}</div></td><td style="color:${i===0?'#e07050':'var(--text3)'}">${i===0?'<b>Fundamental</b>':'Overtone n='+h.n}</td></tr>`).join('');
+  drawS1Spec(H);drawS1Wave(H);s1Sound(f);
 }
-
-function s1StartSound(){
-  s1StopNodes();
-  const freq=+document.getElementById('s1-freq-sl').value;
-  const amp=+document.getElementById('s1-amp-sl').value;
-  const ac=getAC();const now=ac.currentTime;
-  s1GainNode=ac.createGain();s1GainNode.gain.setValueAtTime(amp*.35,now);s1GainNode.connect(ac.destination);
-  const H=getHarmonicsForWT(freq);
-  H.forEach(h=>{const o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.value=h.freq;g.gain.value=h.amp;o.connect(g);g.connect(s1GainNode);o.start();s1OscNodes.push(o,g);});
+function s1Sound(f){
+  const ac=getAC();const mg=ac.createGain();mg.gain.setValueAtTime(0.28,ac.currentTime);mg.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+3.5);mg.connect(ac.destination);
+  piH(f).forEach(h=>{const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=h.freq;g.gain.value=h.amp*.18;o.connect(g);g.connect(mg);o.start();o.stop(ac.currentTime+3.5);});
+  s1node=mg;
 }
-
-function s1StopNodes(){
-  s1OscNodes.forEach(n=>{try{n.stop?.();n.disconnect?.();}catch(e){}});s1OscNodes=[];
-  if(s1GainNode){try{s1GainNode.disconnect();}catch(e){}s1GainNode=null;}
-}
-
-function s1UpdateSoundGain(amp){
-  if(s1GainNode)s1GainNode.gain.setTargetAtTime(amp*.35,getAC().currentTime,.05);
-  // also update osc frequencies if they changed
-  const freq=+document.getElementById('s1-freq-sl').value;
-  const H=getHarmonicsForWT(freq);
-  // rebuild if needed (wave type change handled in s1SetWT)
-}
-
-function s1PlayToggle(){
-  if(s1Playing){s1Stop();}
-  else{s1Playing=true;document.getElementById('s1-play-btn').textContent='■ Playing';s1StartSound();}
-}
-function s1Stop(){s1Playing=false;document.getElementById('s1-play-btn').textContent='▶ Play';s1StopNodes();}
-
-function drawS1Spec(H,maxA){
+function s1PlayNote(){if(s1midi)s1Sound(mf(s1midi));}
+function s1Stop(){if(s1node){try{s1node.disconnect();}catch(e){}s1node=null;}}
+function drawS1Spec(H){
   const r=prep('s1-sc',180);if(!r)return;const{cx,W}=r;
   const bw=Math.min(40,W/(H.length+1)*.52),sp=W/(H.length+1);
-  const ma=maxA||Math.max(...H.map(h=>h.amp))||1;
-  H.forEach((h,i)=>{const x=sp*(i+1),bh=h.amp/ma*152,y=165-bh,[g1,g2]=GRADS[i%8];drawSineBar(cx,W,180,x,bw,y,bh,g1,g2,h.n);cx.fillStyle=g1;cx.font='9px DM Mono';cx.textAlign='center';cx.fillText(`n=${h.n}`,x,177);cx.fillText(h.freq.toFixed(0),x,169);});
+  H.forEach((h,i)=>{const x=sp*(i+1),bh=h.amp*152,y=165-bh,[g1,g2]=GRADS[i%8];drawSineBar(cx,W,180,x,bw,y,bh,g1,g2,h.n);cx.fillStyle=g1;cx.font='9px DM Mono';cx.textAlign='center';cx.fillText(`n=${h.n}`,x,177);cx.fillText(h.freq.toFixed(0),x,169);});
 }
-function drawS1Wave(H,amp){
+function drawS1Wave(H){
   const r=prep('s1-wc',180);if(!r)return;const{cx,W}=r;
-  H.slice(0,6).forEach((h,i)=>{cx.beginPath();cx.strokeStyle=COLS[i%8]+'40';cx.lineWidth=1;for(let p=0;p<W;p++){const y=90-h.amp*36*Math.sin(2*Math.PI*h.n*p/W);p===0?cx.moveTo(p,y):cx.lineTo(p,y);}cx.stroke();});
+  H.slice(0,6).forEach((h,i)=>{cx.beginPath();cx.strokeStyle=COLS[i%8]+'55';cx.lineWidth=1;for(let p=0;p<W;p++){const y=90-h.amp*36*Math.sin(2*Math.PI*h.n*p/W);p===0?cx.moveTo(p,y):cx.lineTo(p,y);}cx.stroke();});
   cx.beginPath();cx.lineWidth=2.5;const grad=cx.createLinearGradient(0,0,W,0);grad.addColorStop(0,'#FF9A9E');grad.addColorStop(.5,'#FECFEF');grad.addColorStop(1,'#8EC5FC');cx.strokeStyle=grad;
-  const scale=amp?36/amp:36;
-  for(let p=0;p<W;p++){const y=90-H.reduce((s,h)=>s+h.amp*Math.sin(2*Math.PI*h.n*p/W),0)*scale;p===0?cx.moveTo(p,y):cx.lineTo(p,y);}cx.stroke();
+  for(let p=0;p<W;p++){const y=90-H.reduce((s,h)=>s+h.amp*Math.sin(2*Math.PI*h.n*p/W),0)*20;p===0?cx.moveTo(p,y):cx.lineTo(p,y);}cx.stroke();
 }
-s1Update();
+buildP('piano1',48,83,s1Press);
 
 // ══════════════════════════════════════════
-//  PAGE 2 — SIDE-BY-SIDE INSTRUMENT COMPARE
+//  PAGE 2 — INSTRUMENTS
 // ══════════════════════════════════════════
 const INSTS={
-  piano:{name:'Piano',icon:'🎹',g:['#FF9A9E','#FFB347'],h:[1,.65,.48,.32,.22,.15,.10,.07,.05,.03,.02,.01],inharmonicity:.0006,atk:.003,dec:.4,sus:.55,dur:3.5,noise:.01,d:'Steel string: rich overtones + inharmonicity',bright:1.0},
-  violin:{name:'Violin',icon:'🎻',g:['#E0C3FC','#FF9A9E'],h:[1,.95,.75,.60,.48,.38,.30,.24,.18,.13,.09,.06],inharmonicity:0,atk:.12,dec:0,sus:1,dur:2.5,vibrato:{rate:5.5,depth:.012,delay:.18},noise:.008,d:'Bowed string: sustained, balanced harmonics + vibrato',bright:1.3},
-  guitar:{name:'Guitar',icon:'🎸',g:['#8EC5FC','#E0C3FC'],h:[1,.55,.38,.22,.12,.07,.04,.025,.015,.008,.004,.002],inharmonicity:.0002,atk:.001,dec:.35,sus:.2,dur:3,noise:.025,d:'Plucked string: fast attack, decaying overtones',bright:.9},
-  clarinet:{name:'Clarinet',icon:'🎵',g:['#E0C3FC','#8EC5FC'],h:[1,.02,.75,.01,.45,.005,.28,.002,.18,.001,.10,.0005],inharmonicity:0,atk:.05,dec:.02,sus:.98,dur:2.5,noise:.005,d:'Odd harmonics dominate (1,3,5,7…)',bright:1.1},
-  oboe:{name:'Oboe',icon:'🎶',g:['#f6d365','#fda085'],h:[1,.88,.80,.70,.58,.46,.36,.27,.19,.13,.08,.05],inharmonicity:0,atk:.06,dec:.03,sus:.96,dur:2.5,noise:.012,d:'Double reed: bright, full harmonic energy',bright:1.5},
+  piano:{name:'Piano',icon:'🎹',g:['#FF9A9E','#FFB347'],h:[1,.65,.48,.32,.22,.15,.10,.07,.05,.03,.02,.01],inharmonicity:.0006,atk:.003,dec:.4,sus:.55,dur:3.5,noise:.01,d:'Steel string resonance: rich overtones + slight inharmonicity',bright:1.0},
+  violin:{name:'Violin',icon:'🎻',g:['#E0C3FC','#FF9A9E'],h:[1,.95,.75,.60,.48,.38,.30,.24,.18,.13,.09,.06],inharmonicity:0,atk:.12,dec:0,sus:1,dur:2.5,vibrato:{rate:5.5,depth:.012,delay:.18},noise:.008,d:'Bowed string: sustained tone, balanced harmonics + vibrato',bright:1.3},
+  guitar:{name:'Guitar',icon:'🎸',g:['#8EC5FC','#E0C3FC'],h:[1,.55,.38,.22,.12,.07,.04,.025,.015,.008,.004,.002],inharmonicity:.0002,atk:.001,dec:.35,sus:.2,dur:3,noise:.025,d:'Plucked string: fast attack, rapidly decaying overtones',bright:.9},
+  clarinet:{name:'Clarinet',icon:'🎵',g:['#E0C3FC','#8EC5FC'],h:[1,.02,.75,.01,.45,.005,.28,.002,.18,.001,.10,.0005],inharmonicity:0,atk:.05,dec:.02,sus:.98,dur:2.5,noise:.005,d:'Closed cylindrical bore: odd harmonics dominate (1,3,5,7…)',bright:1.1},
+  oboe:{name:'Oboe',icon:'🎶',g:['#f6d365','#fda085'],h:[1,.88,.80,.70,.58,.46,.36,.27,.19,.13,.08,.05],inharmonicity:0,atk:.06,dec:.03,sus:.96,dur:2.5,noise:.012,d:'Double reed: high harmonic energy, bright brilliant tone',bright:1.5},
 };
-
-let p2State={L:{inst:'piano',node:null,oscs:[]},R:{inst:'violin',node:null,oscs:[]}};
-
-const INST_ZH={piano:'鋼琴',violin:'小提琴',guitar:'吉他',clarinet:'單簧管',oboe:'雙簧管'};
-
-function p2SI(side,instKey,btn){
-  document.querySelectorAll(`#p2${side}-inst .cib`).forEach(b=>b.classList.remove('active'));btn.classList.add('active');
-  p2State[side].inst=instKey;
-  document.getElementById('p2'+side+'-name').textContent=INST_ZH[instKey]||INSTS[instKey].name;
+let curI='piano',s3node=null,s3oscs=[];
+function s3SI(btn){document.querySelectorAll('.ib').forEach(b=>b.classList.remove('active'));btn.classList.add('active');curI=btn.dataset.i;document.getElementById('s3-in').textContent=INSTS[curI].name;}
+function s3Press(midi,el){
+  s3Stop();document.querySelectorAll('#piano3 .wk,#piano3 .bk').forEach(k=>k.classList.remove('pressed'));el.classList.add('pressed');
+  const f=mf(midi);document.getElementById('s3-nn').textContent=mn(midi)+` (${f.toFixed(1)} Hz)`;
+  const inst=INSTS[curI];s3PlayInst(f,inst,midi);drawS3Spec(f,inst);drawS3Wave(f,inst);s3Table(f,inst);
 }
-
-function p2Press(side,midi,el){
-  p2Stop(side);
-  document.querySelectorAll(`#piano${side} .wk,#piano${side} .bk`).forEach(k=>k.classList.remove('pressed'));el.classList.add('pressed');
-  const f=mf(midi);
-  document.getElementById('p2'+side+'-note').textContent=mn(midi)+' '+f.toFixed(1)+'Hz';
-  const inst=INSTS[p2State[side].inst];
-  p2PlayInst(side,f,inst,midi);
-  p2DrawSpec(side,f,inst);
-  p2DrawWave(side,f,inst);
-  p2Table(side,f,inst);
-}
-
-function p2PlayInst(side,f,inst,midi){
+function s3PlayInst(f,inst,midi){
   const ac=getAC();const now=ac.currentTime;
   const mg=ac.createGain();mg.gain.setValueAtTime(0,now);mg.gain.linearRampToValueAtTime(.32,now+inst.atk);
   if(inst.dec>0)mg.gain.linearRampToValueAtTime(.32*inst.sus,now+inst.atk+inst.dec);
   mg.gain.setValueAtTime(.32*(inst.dec>0?inst.sus:1),now+inst.atk+inst.dec+.02);
   mg.gain.exponentialRampToValueAtTime(.001,now+inst.dur);
   const lpf=ac.createBiquadFilter();lpf.type='lowpass';lpf.frequency.value=Math.min(800+mf(midi)*inst.bright*4,18000);lpf.Q.value=.5;
-  lpf.connect(mg);mg.connect(ac.destination);p2State[side].oscs=[];
+  lpf.connect(mg);mg.connect(ac.destination);s3oscs=[];
   inst.h.forEach((amp,i)=>{
     if(amp<.001)return;const n=i+1;const fH=f*n*Math.sqrt(1+(inst.inharmonicity||0)*n*n);
     const osc=ac.createOscillator(),g=ac.createGain(),hg=ac.createGain();
     osc.type='sine';osc.frequency.value=fH;g.gain.value=amp*.22;
     hg.gain.setValueAtTime(1,now);hg.gain.exponentialRampToValueAtTime(.001,now+inst.dur/(.8+n*.12));
     osc.connect(g);g.connect(hg);hg.connect(lpf);
-    if(inst.vibrato&&n===1){const vib=ac.createOscillator(),vg=ac.createGain();vib.frequency.value=inst.vibrato.rate;vg.gain.setValueAtTime(0,now);vg.gain.linearRampToValueAtTime(0,now+inst.vibrato.delay);vg.gain.linearRampToValueAtTime(inst.vibrato.depth*fH,now+inst.vibrato.delay+.2);vib.connect(vg);vg.connect(osc.frequency);vib.start(now);vib.stop(now+inst.dur+.5);p2State[side].oscs.push(vib);}
-    osc.start(now);osc.stop(now+inst.dur+.5);p2State[side].oscs.push(osc);
+    if(inst.vibrato&&n===1){const vib=ac.createOscillator(),vg=ac.createGain();vib.frequency.value=inst.vibrato.rate;vg.gain.setValueAtTime(0,now);vg.gain.linearRampToValueAtTime(0,now+inst.vibrato.delay);vg.gain.linearRampToValueAtTime(inst.vibrato.depth*fH,now+inst.vibrato.delay+.2);vib.connect(vg);vg.connect(osc.frequency);vib.start(now);vib.stop(now+inst.dur+.5);s3oscs.push(vib);}
+    osc.start(now);osc.stop(now+inst.dur+.5);s3oscs.push(osc);
   });
   if(inst.noise>.0){const bs=ac.sampleRate*.05,nb=ac.createBuffer(1,bs,ac.sampleRate),nd=nb.getChannelData(0);for(let i=0;i<bs;i++)nd[i]=(Math.random()*2-1)*inst.noise;const ns=ac.createBufferSource(),ng=ac.createGain();ns.buffer=nb;ng.gain.setValueAtTime(.3,now);ng.gain.exponentialRampToValueAtTime(.001,now+.05);ns.connect(ng);ng.connect(mg);ns.start(now);}
-  p2State[side].node=mg;
+  s3node=mg;
 }
-
-function p2DrawSpec(side,f,inst){
-  const suffix=side==='L'?'p2L-sc':'p2R-sc';
-  const SIDE_GRADS=side==='L'?GRADS:GRADS.map(([a,b])=>[b,a]);
-  const r=prep(suffix,160);if(!r)return;const{cx,W}=r;
-  const M=inst.h.length,bw=Math.min(28,W/(M+1)*.45);
-  inst.h.forEach((a,i)=>{const x=W/(M+1)*(i+1),bh=a*142,y=150-bh,[g1,g2]=SIDE_GRADS[i%8];drawSineBar(cx,W,160,x,bw,y,bh,g1,g2,i+1);cx.fillStyle=g1;cx.font='8px DM Mono';cx.textAlign='center';cx.fillText(`${i+1}`,x,156);});
-  cx.fillStyle='rgba(0,0,0,.3)';cx.font='9px DM Mono';cx.textAlign='left';cx.fillText(inst.d,6,13);
+function drawS3Spec(f,inst){
+  const r=prep('s3-sc',195);if(!r)return;const{cx,W}=r;
+  const M=inst.h.length,bw=Math.min(32,W/(M+1)*.5);
+  inst.h.forEach((a,i)=>{const x=W/(M+1)*(i+1),bh=a*178,y=182-bh,[g1,g2]=GRADS[i%8];drawSineBar(cx,W,195,x,bw,y,bh,g1,g2,i+1);cx.fillStyle=g1;cx.font='8px DM Mono';cx.textAlign='center';cx.fillText(`n=${i+1}`,x,192);if(bh>12)cx.fillText((f*(i+1)).toFixed(0),x,184);});
+  cx.fillStyle='rgba(0,0,0,.35)';cx.font='9px DM Mono';cx.textAlign='left';cx.fillText(inst.d,6,13);
 }
-
-function p2DrawWave(side,f,inst){
-  const suffix=side==='L'?'p2L-wc':'p2R-wc';
-  const r=prep(suffix,130);if(!r)return;const{cx,W}=r;
-  inst.h.forEach((a,i)=>{if(a<.02)return;cx.beginPath();cx.strokeStyle=COLS[i%8]+'38';cx.lineWidth=1;for(let p=0;p<W;p++){const y=65-a*28*Math.sin(2*Math.PI*(i+1)*p/W);p===0?cx.moveTo(p,y):cx.lineTo(p,y);}cx.stroke();});
-  cx.beginPath();cx.lineWidth=2;const grad=cx.createLinearGradient(0,0,W,0);
-  grad.addColorStop(0,inst.g[0]);grad.addColorStop(1,inst.g[1]);cx.strokeStyle=grad;
-  for(let p=0;p<W;p++){const y=65-inst.h.reduce((s,a,i)=>s+a*Math.sin(2*Math.PI*(i+1)*p/W),0)*18;p===0?cx.moveTo(p,y):cx.lineTo(p,y);}cx.stroke();
+function drawS3Wave(f,inst){
+  const r=prep('s3-wc',195);if(!r)return;const{cx,W}=r;
+  inst.h.forEach((a,i)=>{if(a<.02)return;cx.beginPath();cx.strokeStyle=COLS[i%8]+'40';cx.lineWidth=1;for(let p=0;p<W;p++){const y=97-a*46*Math.sin(2*Math.PI*(i+1)*p/W);p===0?cx.moveTo(p,y):cx.lineTo(p,y);}cx.stroke();});
+  cx.beginPath();cx.lineWidth=2.5;const grad=cx.createLinearGradient(0,0,W,0);grad.addColorStop(0,inst.g[0]);grad.addColorStop(1,inst.g[1]);cx.strokeStyle=grad;
+  for(let p=0;p<W;p++){const y=97-inst.h.reduce((s,a,i)=>s+a*Math.sin(2*Math.PI*(i+1)*p/W),0)*28;p===0?cx.moveTo(p,y):cx.lineTo(p,y);}cx.stroke();
 }
-
-function p2Table(side,f,inst){
-  const suffix=side==='L'?'p2L-ht':'p2R-ht';
-  const tb=document.getElementById(suffix).querySelector('tbody');
-  tb.innerHTML=inst.h.map((a,i)=>`<tr><td><span class="hdot" style="background:${GRADS[i%8][0]}"></span></td><td>${i+1}</td><td>${(f*(i+1)).toFixed(1)}</td><td><div style="display:flex;align-items:center;gap:.3rem"><div class="hbar" style="width:${a*70}px;background:linear-gradient(90deg,${GRADS[i%8][0]},${GRADS[i%8][1]})"></div>${a.toFixed(3)}</div></td><td style="color:${i===0?GRADS[i%8][0]:'var(--text3)'}">${i===0?'<b>Fund.</b>':'n='+(i+1)}</td></tr>`).join('');
+function s3Table(f,inst){
+  const tb=document.getElementById('s3-ht').querySelector('tbody');
+  tb.innerHTML=inst.h.map((a,i)=>`<tr><td><span class="hdot" style="background:${GRADS[i%8][0]}"></span></td><td>${i+1}</td><td>${(f*(i+1)).toFixed(2)}</td><td><div style="display:flex;align-items:center;gap:.35rem"><div class="hbar" style="width:${a*90}px;background:linear-gradient(90deg,${GRADS[i%8][0]},${GRADS[i%8][1]})"></div>${a.toFixed(3)}</div></td><td style="color:${i===0?GRADS[i%8][0]:'var(--text3)'}">${i===0?'<b>Fundamental</b>':'Overtone n='+(i+1)}</td></tr>`).join('');
 }
-
-function p2Stop(side){
-  p2State[side].oscs.forEach(o=>{try{o.stop();}catch(e){}});p2State[side].oscs=[];
-  if(p2State[side].node){try{p2State[side].node.disconnect();}catch(e){}p2State[side].node=null;}
-}
-
-buildP('pianoL',48,83,(m,el)=>p2Press('L',m,el));
-buildP('pianoR',48,83,(m,el)=>p2Press('R',m,el));
+function s3Stop(){s3oscs.forEach(o=>{try{o.stop();}catch(e){}});s3oscs=[];if(s3node){try{s3node.disconnect();}catch(e){}s3node=null;}}
+buildP('piano3',48,83,s3Press);
 
 // ══════════════════════════════════════════
 //  PAGE 3 — DRAW
@@ -1038,8 +833,6 @@ window.addEventListener('resize',resizeDraw,{passive:true});
 
 // ══════════════════════════════════════════
 //  PAGE 4 — RECORDING
-//  Key fix: use getUserMedia on button click (user gesture) so browser
-//  shows the permission popup correctly on deployed HTTPS sites.
 // ══════════════════════════════════════════
 let isR=false,rStream=null,rRec=null,rChunks=[],rAna=null,rAnimId=null,rBuf=null,rPN=null;
 
@@ -1047,10 +840,9 @@ async function reqMicPerm(){
   const errEl=document.getElementById('mic-err');
   errEl.style.display='none';
   try{
-    // Must be called from a user gesture on HTTPS for the browser to show the dialog
-    const stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,sampleRate:44100},video:false});
-    rStream=stream;
-    // Wire up analyser
+    // Keep stream alive — don't stop tracks, reuse for recording
+    rStream=await navigator.mediaDevices.getUserMedia({audio:true,video:false});
+    // Wire up analyser right away
     const ac=getAC();
     const src=ac.createMediaStreamSource(rStream);
     rAna=ac.createAnalyser();rAna.fftSize=2048;src.connect(rAna);
@@ -1059,41 +851,44 @@ async function reqMicPerm(){
   }catch(e){
     errEl.style.display='block';
     if(e.name==='NotAllowedError'||e.name==='PermissionDeniedError')
-      errEl.textContent='⚠ Permission denied. Click the 🔒 icon in the address bar → Microphone → Allow, then refresh.';
+      errEl.textContent='⚠ Microphone denied. Allow it in browser settings then refresh.';
     else if(e.name==='NotFoundError')
       errEl.textContent='⚠ No microphone found on this device.';
-    else if(e.name==='NotSupportedError'||e.name==='SecurityError')
-      errEl.textContent='⚠ Microphone requires HTTPS. Make sure the site is served over https://.';
     else
-      errEl.textContent='⚠ Error: '+e.message;
+      errEl.textContent='⚠ Microphone error: '+e.message;
   }
 }
 
 async function toggleRec(){if(!isR)await startR();else stopR();}
 
 async function startR(){
+  // Reopen stream if tracks ended
   if(!rStream||rStream.getTracks().every(t=>t.readyState==='ended')){
     try{
-      rStream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true},video:false});
+      rStream=await navigator.mediaDevices.getUserMedia({audio:true,video:false});
       const ac=getAC();
       const src=ac.createMediaStreamSource(rStream);
       rAna=ac.createAnalyser();rAna.fftSize=2048;src.connect(rAna);
     }catch(e){
-      document.getElementById('rst').innerHTML='<span style="color:#c0392b">⚠ Cannot access microphone: '+e.message+'</span>';
+      document.getElementById('rst').innerHTML='<span style="color:#c0392b">⚠ Cannot access microphone</span>';
       return;
     }
   }
-  const mimes=['audio/webm;codecs=opus','audio/webm','audio/ogg;codecs=opus','audio/ogg',''];
-  const mime=mimes.find(m=>m===''||MediaRecorder.isTypeSupported(m));
-  try{rRec=new MediaRecorder(rStream,mime?{mimeType:mime}:{});}
-  catch(e){rRec=new MediaRecorder(rStream);}
+  // Pick best supported MIME type
+  const mimes=['audio/webm;codecs=opus','audio/webm','audio/ogg;codecs=opus','audio/ogg'];
+  const mime=mimes.find(m=>MediaRecorder.isTypeSupported(m))||'';
+  try{
+    rRec=new MediaRecorder(rStream,mime?{mimeType:mime}:{});
+  }catch(e){
+    rRec=new MediaRecorder(rStream);
+  }
   rChunks=[];
   rRec.ondataavailable=e=>{if(e.data&&e.data.size>0)rChunks.push(e.data);};
   rRec.onstop=procR;
   rRec.start(200);
   isR=true;
   document.getElementById('rr').classList.add('on');
-  document.getElementById('rst').innerHTML='<span class="dot"></span>錄音中… · Recording…';
+  document.getElementById('rst').innerHTML='<span class="dot"></span>Recording…';
   drawRT();
 }
 
@@ -1110,7 +905,7 @@ function drawRT(){
   const c=document.getElementById('s4rt');if(!c||!rAna)return;
   const W=c.offsetWidth||600;c.width=W;c.height=200;const cx=c.getContext('2d');
   const fbd=new Uint8Array(rAna.frequencyBinCount);
-  const sr=getAC().sampleRate;
+  const sr=getAC().sampleRate; // use getAC() not AC directly
   function frame(){
     if(!isR)return;rAnimId=requestAnimationFrame(frame);
     rAna.getByteFrequencyData(fbd);
@@ -1134,16 +929,16 @@ function drawRT(){
 }
 
 async function procR(){
-  if(!rChunks.length){document.getElementById('rst').textContent='未錄到音訊 · No audio captured.';return;}
+  if(!rChunks.length){document.getElementById('rst').textContent='No audio captured.';return;}
   const mime=(rRec&&rRec.mimeType)||'audio/webm';
   const blob=new Blob(rChunks,{type:mime});
   const ab=await blob.arrayBuffer();
-  getAC().decodeAudioData(ab,buf=>{
+  getAC().decodeAudioData(ab, buf=>{
     rBuf=buf;drawRWave();drawRTop();drawRSines();
-    document.getElementById('rst').innerHTML='<span style="color:#3a9a7a">✓ 分析完成 · Analysis complete</span>';
+    document.getElementById('rst').innerHTML='<span style="color:#3a9a7a">✓ Analysis complete</span>';
     document.getElementById('s4pb').style.display='inline-block';
     document.getElementById('s4sb').style.display='inline-block';
-  },err=>{
+  }, err=>{
     document.getElementById('rst').innerHTML='<span style="color:#c0392b">⚠ Decode failed — try Chrome or Firefox</span>';
     console.error(err);
   });
@@ -1195,13 +990,19 @@ const B_INST_INFO={
 const MAX_HP=100;
 let bState={p1:{inst:'piano',freq:440,amp:5,hp:MAX_HP},p2:{inst:'piano',freq:440,amp:5,hp:MAX_HP},over:false};
 const BATTLE_COLORS={p1:['#FF9A9E','#FFB347'],p2:['#8EC5FC','#E0C3FC']};
+
+// Projectiles: {from:1|2, x, progress, color, freq, inst, amp}
 let bProjectiles=[];
 let bArenaAnim=null;
 
-function bInitWaves(){bProjectiles=[];drawArena();}
+function bInitWaves(){
+  bProjectiles=[];
+  drawArena();
+}
 
 function bSelectInst(player,inst,btn){
-  document.querySelectorAll(`#b-inst${player} button`).forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  document.querySelectorAll(`#b-inst${player} button`).forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
   bState['p'+player].inst=inst;
   const info=B_INST_INFO[inst];
   document.getElementById('b-icon'+player).textContent=info.icon;
@@ -1209,79 +1010,159 @@ function bSelectInst(player,inst,btn){
   document.getElementById('b-p'+player+'name').textContent=info.icon+' '+info.name;
 }
 
-function bSetFreq(player,val){bState['p'+player].freq=val;document.getElementById('b-freq'+player).textContent=val+' Hz';}
-function bSetAmp(player,val){bState['p'+player].amp=val;document.getElementById('b-amp'+player).textContent=val;}
+function bSetFreq(player,val){
+  bState['p'+player].freq=val;
+  document.getElementById('b-freq'+player).textContent=val+' Hz';
+}
 
+function bSetAmp(player,val){
+  bState['p'+player].amp=val;
+  document.getElementById('b-amp'+player).textContent=val;
+}
+
+// Main arena draw loop
 function drawArena(){
   const cv=document.getElementById('b-arena');if(!cv)return;
   const W=cv.offsetWidth||600;if(cv.width!==W)cv.width=W;
   const H=cv.height||200;
   const cx=cv.getContext('2d');
+
+  // Background
   cx.fillStyle='#f6f6f8';cx.fillRect(0,0,W,H);
+
+  // Center divider
   cx.strokeStyle='rgba(0,0,0,.07)';cx.lineWidth=1;cx.setLineDash([6,6]);
   cx.beginPath();cx.moveTo(W/2,0);cx.lineTo(W/2,H);cx.stroke();cx.setLineDash([]);
+
+  // Player icons (static, on sides)
   const p1=bState.p1,p2=bState.p2;
-  cx.font='36px serif';cx.textAlign='center';cx.textBaseline='middle';cx.globalAlpha=0.85;
-  cx.fillText(B_INST_INFO[p1.inst].icon,48,H/2);cx.fillText(B_INST_INFO[p2.inst].icon,W-48,H/2);cx.globalAlpha=1;
+  const icon1=B_INST_INFO[p1.inst].icon,icon2=B_INST_INFO[p2.inst].icon;
+  cx.font='36px serif';cx.textAlign='center';cx.textBaseline='middle';
+  cx.globalAlpha=0.85;
+  cx.fillText(icon1,48,H/2);
+  cx.fillText(icon2,W-48,H/2);
+  cx.globalAlpha=1;
+
+  // Idle standing waves under icons
   [[48,'#FF9A9E'],[W-48,'#8EC5FC']].forEach(([cx0,col],pi)=>{
     const p=bState['p'+(pi+1)];const inst=INSTS[p.inst];
-    cx.beginPath();cx.strokeStyle=col+'80';cx.lineWidth=1.5;const ww=38;
-    for(let i=0;i<=ww;i++){const t=i/ww;const y=H/2+inst.h.slice(0,4).reduce((s,a,n)=>s+a*Math.sin(2*Math.PI*(n+1)*t*3+Date.now()/300),0)*10;i===0?cx.moveTo(cx0-ww/2+i,y):cx.lineTo(cx0-ww/2+i,y);}
+    cx.beginPath();cx.strokeStyle=col+'80';cx.lineWidth=1.5;
+    const ww=38;
+    for(let i=0;i<=ww;i++){
+      const t=i/ww;const y=H/2+inst.h.slice(0,4).reduce((s,a,n)=>s+a*Math.sin(2*Math.PI*(n+1)*t*3+Date.now()/300),0)*10;
+      i===0?cx.moveTo(cx0-ww/2+i,y):cx.lineTo(cx0-ww/2+i,y);
+    }
     cx.stroke();
   });
+
+  // Draw & move projectiles
   bProjectiles=bProjectiles.filter(pr=>{
     pr.progress+=(0.012+pr.freq/30000);
-    const startX=pr.from===1?90:W-90;const endX=pr.from===1?W-90:90;
-    const x=startX+(endX-startX)*pr.progress;const y=H/2;
-    const wlen=80+pr.freq/20,amp2=(14+pr.freq/200)*(pr.amp/5);
+
+    const startX=pr.from===1?90:W-90;
+    const endX=pr.from===1?W-90:90;
+    const x=startX+(endX-startX)*pr.progress;
+    const y=H/2;
+
+    // Wave packet
+    const wlen=80+pr.freq/20;
+    const amp=(14+pr.freq/200)*(pr.amp/5); // scale by amplitude slider
     cx.beginPath();cx.lineWidth=2.5;
     const g=cx.createLinearGradient(x-wlen/2,0,x+wlen/2,0);
     g.addColorStop(0,pr.c1+'00');g.addColorStop(.4,pr.c1);g.addColorStop(.6,pr.c2);g.addColorStop(1,pr.c2+'00');
     cx.strokeStyle=g;cx.shadowColor=pr.c1;cx.shadowBlur=10;
-    for(let i=0;i<=wlen;i++){const t=i/wlen;const envelope=Math.sin(t*Math.PI);const wy=y+Math.sin(2*Math.PI*t*6+pr.phase)*amp2*envelope;i===0?cx.moveTo(x-wlen/2+i,wy):cx.lineTo(x-wlen/2+i,wy);}
+    for(let i=0;i<=wlen;i++){
+      const t=i/wlen;
+      const envelope=Math.sin(t*Math.PI); // fade in & out
+      const wy=y+Math.sin(2*Math.PI*t*6+pr.phase)*amp*envelope;
+      i===0?cx.moveTo(x-wlen/2+i,wy):cx.lineTo(x-wlen/2+i,wy);
+    }
     cx.stroke();cx.shadowBlur=0;
-    cx.fillStyle=pr.c1;cx.font='bold 8px DM Mono';cx.textAlign='center';cx.textBaseline='middle';cx.fillText(pr.freq+'Hz',x,y-amp2-8);
     pr.phase+=0.25;
+
+    // Freq label on projectile
+    cx.fillStyle=pr.c1;cx.font='bold 8px DM Mono';cx.textAlign='center';cx.textBaseline='middle';
+    cx.fillText(pr.freq+'Hz',x,y-amp-8);
+
+    // Hit check
     if(pr.progress>=1){
-      const defNum=pr.from===1?2:1;const def=bState['p'+defNum];
-      const freqBonus=Math.floor(pr.freq/100),instBonus={piano:0,violin:2,guitar:1,clarinet:3,oboe:4}[pr.inst]||0,ampBonus=pr.amp*2;
+      const defNum=pr.from===1?2:1;
+      const def=bState['p'+defNum];
+
+      const freqBonus=Math.floor(pr.freq/100);
+      const instBonus={piano:0,violin:2,guitar:1,clarinet:3,oboe:4}[pr.inst]||0;
+      const ampBonus=pr.amp*2; // amp 1–10 → +2–20 dmg
       const dmg=8+freqBonus+instBonus+ampBonus;
-      const oppIdx=bProjectiles.findIndex(other=>other!==pr&&other.from!==pr.from&&Math.abs(other.freq-pr.freq)<=20&&Math.abs(other.amp-pr.amp)<=1);
-      if(oppIdx!==-1){bPlayCancelSound(pr.freq);bProjectiles.splice(oppIdx,1);document.getElementById('b-log').textContent=`〰 波形相消！${pr.freq}Hz × 振幅${pr.amp} — 互相抵銷，無傷！· Wave cancellation! nullified!`;return false;}
-      def.hp=Math.max(0,def.hp-dmg);bUpdateHP();bPlayHitSound(pr.freq);
-      const hitX=pr.from===1?W-48:48;cx.fillStyle='rgba(255,80,80,.25)';cx.beginPath();cx.arc(hitX,H/2,36,0,Math.PI*2);cx.fill();
+
+      // Check wave cancellation: if an enemy projectile exists with same freq+amp, cancel both
+      const oppIdx=bProjectiles.findIndex(other=>
+        other!==pr && other.from!==pr.from &&
+        Math.abs(other.freq-pr.freq)<=20 && Math.abs(other.amp-pr.amp)<=1
+      );
+      if(oppIdx!==-1){
+        // Cancellation!
+        bPlayCancelSound(pr.freq);
+        bProjectiles.splice(oppIdx,1);
+        document.getElementById('b-log').textContent=`〰 Wave cancellation! ${pr.freq}Hz × Amp${pr.amp} — waves nullified each other!`;
+        return false;
+      }
+
+      def.hp=Math.max(0,def.hp-dmg);
+      bUpdateHP();
+      bPlayHitSound(pr.freq);
+
+      // Hit flash
+      const hitX=pr.from===1?W-48:48;
+      cx.fillStyle='rgba(255,80,80,.25)';cx.beginPath();cx.arc(hitX,H/2,36,0,Math.PI*2);cx.fill();
+
       const atkInfo=B_INST_INFO[pr.inst];
-      document.getElementById('b-log').textContent=`${atkInfo.icon} 玩家${pr.from} ${pr.freq}Hz · 振幅${pr.amp} → 造成 ${dmg} 傷害！· P${pr.from} dealt ${dmg} dmg`;
-      if(def.hp<=0&&!bState.over){bState.over=true;const winner=B_INST_INFO[bState['p'+pr.from].inst];setTimeout(()=>{const el=document.getElementById('b-result');document.getElementById('b-result-text').textContent=`🏆 玩家${pr.from} (${winner.icon} ${winner.name}) 獲勝！· Player ${pr.from} wins!`;el.style.display='flex';},300);}
-      return false;
+      document.getElementById('b-log').textContent=`${atkInfo.icon} Player ${pr.from} (${atkInfo.name}) fires ${pr.freq}Hz · Amp ${pr.amp} — dealt ${dmg} damage!`;
+
+      if(def.hp<=0&&!bState.over){
+        bState.over=true;
+        const winner=B_INST_INFO[bState['p'+pr.from].inst];
+        setTimeout(()=>{
+          const el=document.getElementById('b-result');
+          document.getElementById('b-result-text').textContent=`🏆 Player ${pr.from} (${winner.icon} ${winner.name}) wins!`;
+          el.style.display='flex';
+        },300);
+      }
+      return false; // remove projectile
     }
     return true;
   });
+
   bArenaAnim=requestAnimationFrame(drawArena);
 }
 
 function bAttack(attacker){
   if(bState.over)return;
-  const atk=bState['p'+attacker];const [c1,c2]=BATTLE_COLORS['p'+attacker];
-  bPlayAttackSound(atk);bProjectiles.push({from:attacker,progress:0,freq:atk.freq,amp:atk.amp,inst:atk.inst,c1,c2,phase:0});
+  const atk=bState['p'+attacker];
+  const [c1,c2]=BATTLE_COLORS['p'+attacker];
+  bPlayAttackSound(atk);
+  bProjectiles.push({from:attacker,progress:0,freq:atk.freq,amp:atk.amp,inst:atk.inst,c1,c2,phase:0});
 }
 
 function bPlayAttackSound(atk){
-  const ac=getAC();const now=ac.currentTime;const inst=INSTS[atk.inst];
+  const ac=getAC();const now=ac.currentTime;
+  const inst=INSTS[atk.inst];
   const mg=ac.createGain();mg.gain.setValueAtTime(.18,now);mg.gain.exponentialRampToValueAtTime(.001,now+.5);mg.connect(ac.destination);
   inst.h.slice(0,5).forEach((amp,i)=>{if(amp<.01)return;const osc=ac.createOscillator(),g=ac.createGain();osc.frequency.value=atk.freq*(i+1);g.gain.value=amp*.25;osc.connect(g);g.connect(mg);osc.start(now);osc.stop(now+.5);});
 }
 
 function bPlayHitSound(freq){
+  // Impact thud: low-freq thump + short noise burst
   const ac=getAC();const now=ac.currentTime;
   const mg=ac.createGain();mg.gain.setValueAtTime(.25,now);mg.gain.exponentialRampToValueAtTime(.001,now+.35);mg.connect(ac.destination);
   const o1=ac.createOscillator();o1.type='sine';o1.frequency.setValueAtTime(freq*.5,now);o1.frequency.exponentialRampToValueAtTime(60,now+.3);
   const g1=ac.createGain();g1.gain.value=.6;o1.connect(g1);g1.connect(mg);o1.start(now);o1.stop(now+.35);
+  // Brief noise
   const buf=ac.createBuffer(1,ac.sampleRate*.08,ac.sampleRate);const d=buf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1);
   const ns=ac.createBufferSource();ns.buffer=buf;const ng=ac.createGain();ng.gain.setValueAtTime(.4,now);ng.gain.exponentialRampToValueAtTime(.001,now+.08);ns.connect(ng);ng.connect(mg);ns.start(now);
 }
 
 function bPlayCancelSound(freq){
+  // Wobbly cancellation tone
   const ac=getAC();const now=ac.currentTime;
   const mg=ac.createGain();mg.gain.setValueAtTime(.15,now);mg.gain.exponentialRampToValueAtTime(.001,now+.6);mg.connect(ac.destination);
   [1,1.005].forEach(r=>{const o=ac.createOscillator();o.type='sine';o.frequency.value=freq*r;const g=ac.createGain();g.gain.value=.5;o.connect(g);g.connect(mg);o.start(now);o.stop(now+.65);});
@@ -1289,18 +1170,33 @@ function bPlayCancelSound(freq){
 
 function bUpdateHP(){
   ['p1','p2'].forEach((pk,idx)=>{
-    const p=bState[pk];const n=idx+1;const pct=p.hp/MAX_HP*100;
-    const bar=document.getElementById('hp'+n);bar.style.width=pct+'%';
+    const p=bState[pk];const n=idx+1;
+    const pct=p.hp/MAX_HP*100;
+    const bar=document.getElementById('hp'+n);
+    bar.style.width=pct+'%';
     document.getElementById('hp'+n+'-val').textContent=Math.ceil(p.hp);
-    if(pct<25){bar.style.background='linear-gradient(90deg,#c0392b,#e74c3c)';bar.style.boxShadow='0 0 14px rgba(192,57,43,.7)';}
-    else if(pct<50){bar.style.background=idx===0?'linear-gradient(90deg,#e74c3c,#FF9A9E)':'linear-gradient(270deg,#3a6bc0,#8EC5FC)';bar.style.boxShadow=idx===0?'0 0 10px rgba(231,76,60,.5)':'0 0 10px rgba(58,107,192,.5)';}
-    else{bar.style.background=idx===0?'linear-gradient(90deg,#FF6B6B,#FF9A9E,#FFB347)':'linear-gradient(270deg,#5b8afc,#8EC5FC,#E0C3FC)';bar.style.boxShadow=idx===0?'0 0 10px rgba(255,107,107,.5)':'0 0 10px rgba(91,138,252,.45)';}
+    if(pct<25){
+      bar.style.background='linear-gradient(90deg,#c0392b,#e74c3c)';
+      bar.style.boxShadow='0 0 14px rgba(192,57,43,.7)';
+    } else if(pct<50){
+      bar.style.background=idx===0
+        ?'linear-gradient(90deg,#e74c3c,#FF9A9E)'
+        :'linear-gradient(270deg,#3a6bc0,#8EC5FC)';
+      bar.style.boxShadow=idx===0?'0 0 10px rgba(231,76,60,.5)':'0 0 10px rgba(58,107,192,.5)';
+    } else {
+      bar.style.background=idx===0
+        ?'linear-gradient(90deg,#FF6B6B,#FF9A9E,#FFB347)'
+        :'linear-gradient(270deg,#5b8afc,#8EC5FC,#E0C3FC)';
+      bar.style.boxShadow=idx===0?'0 0 10px rgba(255,107,107,.5)':'0 0 10px rgba(91,138,252,.45)';
+    }
   });
 }
 
 function bReset(){
-  bState.p1.hp=MAX_HP;bState.p2.hp=MAX_HP;bState.over=false;bProjectiles=[];bUpdateHP();
-  document.getElementById('b-log').textContent='— 等待行動 · Waiting for action —';
+  bState.p1.hp=MAX_HP;bState.p2.hp=MAX_HP;bState.over=false;
+  bProjectiles=[];
+  bUpdateHP();
+  document.getElementById('b-log').textContent='— Waiting for action —';
   const res=document.getElementById('b-result');if(res)res.style.display='none';
 }
 </script>
